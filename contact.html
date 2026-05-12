@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find Us & Order — Bread Mall Bakery | Port Harcourt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brown-deep:#2C1100;--brown-mid:#5C2D0A;
+  --amber:#C8720A;--amber-light:#E8921A;
+  --gold:#D4A847;--cream:#FDF6EC;
+  --cream-dark:#F5E6C8;--white:#FFFAF4;
+  --text-dark:#1E0E00;--text-mid:#5C3A1E;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--text-dark);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 5%;background:var(--brown-deep);box-shadow:0 2px 24px rgba(44,17,0,.25)}
+.nav-logo{font-family:'UnifrakturMaguntia',cursive;font-size:2rem;color:var(--cream);letter-spacing:.06em;text-decoration:none}
+.nav-logo span{color:var(--amber-light)}
+.nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center}
+.nav-links a{color:var(--cream);text-decoration:none;font-size:.88rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;opacity:.75;transition:opacity .2s,color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .3s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:var(--gold)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-cta{background:var(--amber);color:var(--cream)!important;padding:.55rem 1.4rem;border-radius:2px;opacity:1!important}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:var(--amber-light)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.3rem}
+.hamburger span{width:24px;height:2px;background:var(--cream);border-radius:2px}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--brown-deep);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1.4rem;font-weight:600;color:var(--cream);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;opacity:.8}
+.mobile-menu a:hover{opacity:1;color:var(--gold)}
+.mobile-menu .m-cta{background:var(--amber);color:var(--cream)!important;padding:.8rem 2.5rem;border-radius:2px;opacity:1!important}
+.mobile-close{position:absolute;top:1.8rem;right:5%;font-size:1.5rem;cursor:pointer;color:var(--cream);background:none;border:none}
+
+/* PAGE HERO */
+.page-hero{background:var(--brown-deep);padding:10rem 5% 5rem;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(200,114,10,.15),transparent 70%)}
+.page-hero-label{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem}
+.page-hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:700;color:var(--cream);line-height:1.1;max-width:700px}
+.page-hero-title em{font-style:italic;color:var(--amber-light)}
+.page-hero-sub{font-size:1rem;color:rgba(253,246,236,.6);line-height:1.8;max-width:520px;margin-top:1.2rem}
+.breadcrumb{display:flex;gap:.6rem;align-items:center;margin-top:2rem;font-size:.8rem;color:rgba(253,246,236,.35)}
+.breadcrumb a{color:rgba(253,246,236,.5);text-decoration:none;transition:color .2s}
+.breadcrumb a:hover{color:var(--gold)}
+.breadcrumb span{color:var(--amber-light)}
+
+/* SHARED */
+section{padding:5.5rem 5%}
+.section-label{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:700;color:var(--brown-deep);line-height:1.2;margin-bottom:1.2rem}
+.section-title em{font-style:italic;color:var(--amber)}
+.section-body{font-size:1rem;color:var(--text-mid);line-height:1.8;max-width:580px}
+
+/* LOCATION */
+#location{background:var(--white)}
+.location-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1200px;margin:0 auto;align-items:start}
+.map-frame{aspect-ratio:4/3;background:var(--cream-dark);border-radius:4px;overflow:hidden;border:1px solid rgba(200,114,10,.2)}
+.map-frame iframe{width:100%;height:100%;border:none;display:block}
+.contact-cards{display:flex;flex-direction:column;gap:1rem}
+.contact-card{background:var(--cream);border:1px solid rgba(200,114,10,.15);border-radius:3px;padding:1.4rem 1.6rem;display:flex;align-items:center;gap:1.2rem;text-decoration:none;transition:border-color .25s,transform .25s,box-shadow .25s;box-shadow:0 2px 8px rgba(44,17,0,.05)}
+.contact-card:hover{border-color:var(--amber);transform:translateX(6px);box-shadow:0 6px 20px rgba(44,17,0,.1)}
+.contact-icon{width:48px;height:48px;border-radius:50%;background:rgba(200,114,10,.12);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;transition:background .3s,transform .3s}
+.contact-card:hover .contact-icon{background:rgba(200,114,10,.25);transform:scale(1.1) rotate(-8deg)}
+.contact-label{font-size:.75rem;color:var(--amber);font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.contact-value{font-size:.95rem;font-weight:500;color:var(--brown-deep);margin-top:.15rem}
+.hours-block{background:var(--brown-deep);border-radius:3px;padding:2rem;margin-top:1rem}
+.hours-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--cream);font-weight:600;margin-bottom:1.2rem}
+.hours-row{display:flex;justify-content:space-between;padding:.55rem 0;border-bottom:1px solid rgba(253,246,236,.08)}
+.hours-row:last-of-type{border-bottom:none}
+.hours-day{font-size:.85rem;color:rgba(253,246,236,.6)}
+.hours-time{font-size:.85rem;color:var(--amber-light);font-weight:500}
+.hours-note{font-size:.78rem;color:rgba(253,246,236,.4);line-height:1.6;margin-top:1rem}
+
+/* ORDER CTA */
+#order{background:var(--amber);position:relative;overflow:hidden;text-align:center;padding:5rem 5%}
+#order::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(255,255,255,.12),transparent 70%)}
+.order-ring{position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.15);top:50%;left:50%;transform:translate(-50%,-50%);animation:ringExpand 4s ease-out infinite}
+.order-ring:nth-child(2){animation-delay:1.3s}
+.order-ring:nth-child(3){animation-delay:2.6s}
+@keyframes ringExpand{from{width:0;height:0;opacity:.8}to{width:900px;height:900px;opacity:0}}
+#order .section-label{color:rgba(253,246,236,.7)}
+#order .section-title{color:var(--brown-deep);max-width:700px;margin:0 auto 1rem}
+#order .section-body{color:rgba(44,17,0,.7);max-width:500px;margin:0 auto 2.5rem}
+.order-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.btn-dark{background:var(--brown-deep);color:var(--cream);padding:1rem 2.2rem;border:none;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:background .25s,transform .2s,box-shadow .25s}
+.btn-dark:hover{background:var(--brown-mid);transform:translateY(-3px);box-shadow:0 12px 32px rgba(44,17,0,.3)}
+
+/* FOOTER */
+footer{background:var(--brown-deep);padding:4rem 5% 2.5rem}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;max-width:1200px;margin:0 auto 3rem}
+.footer-brand .nav-logo{display:inline-block;margin-bottom:1rem;font-size:1.6rem}
+.footer-desc{font-size:.87rem;color:rgba(253,246,236,.5);line-height:1.8;max-width:280px}
+.footer-social{display:flex;gap:.8rem;margin-top:1.5rem}
+.social-btn{width:40px;height:40px;border:1px solid rgba(253,246,236,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;text-decoration:none;color:rgba(253,246,236,.6);transition:border-color .25s,color .25s,background .25s,transform .25s}
+.social-btn:hover{border-color:var(--amber);color:var(--amber);background:rgba(200,114,10,.1);transform:translateY(-4px) rotate(-8deg)}
+.footer-col-title{font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:1.2rem}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+.footer-links a{text-decoration:none;font-size:.88rem;color:rgba(253,246,236,.5);transition:color .2s,padding-left .2s;display:inline-block}
+.footer-links a:hover{color:var(--cream);padding-left:6px}
+.footer-bottom{border-top:1px solid rgba(253,246,236,.08);padding-top:1.8rem;max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-copy{font-size:.8rem;color:rgba(253,246,236,.3)}
+.footer-copy span{color:var(--amber-light)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease}
+.reveal.from-left{transform:translateX(-40px)}
+.reveal.visible{opacity:1;transform:translate(0)}
+.reveal-delay-1{transition-delay:.12s}
+.reveal-delay-2{transition-delay:.24s}
+.reveal-delay-3{transition-delay:.36s}
+.reveal-delay-4{transition-delay:.48s}
+
+@media(max-width:900px){
+  .location-grid,.footer-grid{grid-template-columns:1fr;gap:2.5rem}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+}
+@media(max-width:600px){
+  section{padding:4rem 5%}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .order-actions{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="menu.html">Our Menu</a>
+  <a href="contact.html" class="active">Find Us</a>
+  <a href="contact.html" class="m-cta">Order Now</a>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">Bread<span>Mall</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="menu.html">Our Menu</a></li>
+    <li><a href="contact.html" class="active">Find Us</a></li>
+    <li><a href="contact.html" class="nav-cta">Order Now</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <p class="page-hero-label">Location &amp; Contact</p>
+  <h1 class="page-hero-title">Come <em>Visit</em> the Bakery</h1>
+  <p class="page-hero-sub">We are at No 2 Ezimgbu (Mummy-B) Link Road, off Stadium Road, Port Harcourt. Open 7 days a week.</p>
+  <div class="breadcrumb">
+    <a href="index.html">Home</a> › <span>Find Us</span>
+  </div>
+</div>
+
+<!-- LOCATION -->
+<section id="location">
+  <div style="max-width:1200px;margin:0 auto 3rem">
+    <span class="section-label reveal">Where to Find Us</span>
+    <h2 class="section-title reveal reveal-delay-1">Our <em>Location</em> &amp; Hours</h2>
+  </div>
+  <div class="location-grid">
+    <div class="map-frame reveal from-left">
+      <iframe
+        src="https://www.google.com/maps?q=No+2+Ezimgbu+Link+Road+off+Stadium+Road+Port+Harcourt+Nigeria&output=embed"
+        allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Bread Mall Bakery Location">
+      </iframe>
+    </div>
+    <div>
+      <div class="contact-cards">
+        <a href="https://www.google.com/maps?q=No+2+Ezimgbu+Link+Road+Port+Harcourt" class="contact-card reveal" target="_blank">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Address</div>
+            <div class="contact-value">No 2 Ezimgbu (Mummy-B) Link Road<br>off Stadium Road, Port Harcourt</div>
+          </div>
+        </a>
+        <a href="tel:+2349033519927" class="contact-card reveal reveal-delay-1">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Call Us</div>
+            <div class="contact-value">+234 903 351 9927</div>
+          </div>
+        </a>
+        <a href="https://wa.me/2349033519927" class="contact-card reveal reveal-delay-2" target="_blank">
+          <div class="contact-icon">💬</div>
+          <div>
+            <div class="contact-label">WhatsApp</div>
+            <div class="contact-value">Chat to place or inquire about orders</div>
+          </div>
+        </a>
+        <a href="mailto:breadmall19@gmail.com" class="contact-card reveal reveal-delay-3">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value">breadmall19@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://www.instagram.com/officialbreadmallbakery" class="contact-card reveal reveal-delay-4" target="_blank">
+          <div class="contact-icon">📸</div>
+          <div>
+            <div class="contact-label">Instagram</div>
+            <div class="contact-value">@officialbreadmallbakery</div>
+          </div>
+        </a>
+      </div>
+      <div class="hours-block reveal">
+        <div class="hours-title">🕐 Opening Hours</div>
+        <div class="hours-row"><span class="hours-day">Monday</span><span class="hours-time">8:00 AM – 9:00 PM</span></div>
+        <div class="hours-row"><span class="hours-day">Tuesday</span><span class="hours-time">8:00 AM – 9:00 PM</span></div>
+        <div class="hours-row"><span class="hours-day">Wednesday</span><span class="hours-time">8:00 AM – 9:00 PM</span></div>
+        <div class="hours-row"><span class="hours-day">Thursday</span><span class="hours-time">8:00 AM – 9:00 PM</span></div>
+        <div class="hours-row"><span class="hours-day">Friday</span><span class="hours-time">8:00 AM – 9:00 PM</span></div>
+        <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">8:00 AM – 9:00 PM</span></div>
+        <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time">11:00 AM – 9:00 PM</span></div>
+        <p class="hours-note">Bread baked and sold fresh throughout opening hours. Come early for first batch or late — we are always baking.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER CTA -->
+<section id="order">
+  <div class="order-ring"></div><div class="order-ring"></div><div class="order-ring"></div>
+  <span class="section-label">Place Your Order</span>
+  <h2 class="section-title">Ready for <em>Fresh Bread?</em></h2>
+  <p class="section-body">Walk in and taste the difference. Or reach us on WhatsApp — we are always ready for you.</p>
+  <div class="order-actions">
+    <a href="https://wa.me/2349033519927?text=Hi%20Bread%20Mall%2C%20I%27d%20like%20to%20place%20an%20order" class="btn-dark" target="_blank">💬 WhatsApp Us</a>
+    <a href="tel:+2349033519927" class="btn-dark">📞 Call Now</a>
+    <a href="https://www.google.com/maps?q=No+2+Ezimgbu+Link+Road+Port+Harcourt" class="btn-dark" target="_blank">📍 Get Directions</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">Bread<span>Mall</span></a>
+      <p class="footer-desc">A Bakery where 100% Quality Oven Fresh Bread is sold All Day. Port Harcourt's first see-through bakery — a place to find and taste the difference.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/officialbreadmallbakery" class="social-btn" target="_blank">📸</a>
+        <a href="https://www.facebook.com/p/officialbreadmallbakery-100063736293703/" class="social-btn" target="_blank">👍</a>
+        <a href="https://wa.me/2349033519927" class="social-btn" target="_blank">💬</a>
+        <a href="mailto:breadmall19@gmail.com" class="social-btn">✉️</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Pages</div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="menu.html">Our Menu</a></li>
+        <li><a href="contact.html">Find Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="tel:+2349033519927">+234 903 351 9927</a></li>
+        <li><a href="mailto:breadmall19@gmail.com">breadmall19@gmail.com</a></li>
+        <li><a href="#">No 2 Ezimgbu (Mummy-B)</a></li>
+        <li><a href="#">Link Road, off Stadium Rd</a></li>
+        <li><a href="#">Port Harcourt, Rivers State</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 <span>Bread Mall Bakery</span>. All rights reserved.</p>
+    <p class="footer-copy">Freshly Baked All Day 🍞</p>
+  </div>
+</footer>
+
+<script>
+// HAMBURGER
+document.getElementById('hamburger').addEventListener('click', function(){ document.getElementById('mobileMenu').classList.add('open'); });
+document.getElementById('mobileClose').addEventListener('click', function(){ document.getElementById('mobileMenu').classList.remove('open'); });
+// REVEAL
+var ro = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); } });
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(function(el){ ro.observe(el); });
+</script>
+</body>
+</html>
