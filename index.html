@@ -3,65 +3,213 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Find Us & Order — Bread Mall Bakery | Port Harcourt</title>
+<title>Bread Mall Bakery — Freshly Baked All Day | Port Harcourt</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
 <style>
-:root{
-  --brown-deep:#2C1100;--brown-mid:#5C2D0A;
-  --amber:#C8720A;--amber-light:#E8921A;
-  --gold:#D4A847;--cream:#FDF6EC;
-  --cream-dark:#F5E6C8;--white:#FFFAF4;
-  --text-dark:#1E0E00;--text-mid:#5C3A1E;
-}
+:root{--brown-deep:#2C1100;--brown-mid:#5C2D0A;--amber:#C8720A;--amber-light:#E8921A;--gold:#D4A847;--cream:#FDF6EC;--cream-dark:#F5E6C8;--white:#FFFAF4;--text-dark:#1E0E00;--text-mid:#5C3A1E}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--cream);color:var(--text-dark);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+.page{display:none}.page.active{display:block}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 5%;background:var(--brown-deep);box-shadow:0 2px 24px rgba(44,17,0,.25)}
-.nav-logo{font-family:'UnifrakturMaguntia',cursive;font-size:2rem;color:var(--cream);letter-spacing:.06em;text-decoration:none}
+/* ── LOADER ── */
+#loader{position:fixed;inset:0;z-index:10000;background:var(--brown-deep);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;transition:opacity .8s,visibility .8s}
+#loader.done{opacity:0;visibility:hidden;pointer-events:none}
+.loader-logo{font-family:'UnifrakturMaguntia',cursive;font-size:3.6rem;color:var(--cream);letter-spacing:.08em;animation:logoPulse 1.8s ease-in-out infinite}
+@keyframes logoPulse{0%,100%{opacity:1}50%{opacity:.7}}
+.loader-logo span{color:var(--amber-light)}
+.loader-bar-wrap{width:220px;height:3px;background:rgba(253,246,236,.15);border-radius:2px;overflow:hidden}
+.loader-bar{height:100%;width:0;background:linear-gradient(to right,var(--amber),var(--gold),var(--amber-light));border-radius:2px;animation:loadBar 1.9s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes loadBar{0%{width:0}60%{width:75%}100%{width:100%}}
+.loader-text{font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(253,246,236,.4);animation:blink 1.5s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:.4}50%{opacity:.9}}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 5%;background:transparent;transition:background .4s,box-shadow .4s,padding .3s}
+nav.scrolled,nav.solid{background:var(--brown-deep);box-shadow:0 2px 24px rgba(44,17,0,.3)}
+nav.scrolled{padding:.85rem 5%}
+.nav-logo{font-family:'UnifrakturMaguntia',cursive;font-size:2rem;color:var(--cream);letter-spacing:.06em;cursor:pointer;transition:letter-spacing .3s,text-shadow .3s}
+.nav-logo:hover{letter-spacing:.14em;text-shadow:0 0 20px rgba(200,114,10,.5)}
 .nav-logo span{color:var(--amber-light)}
 .nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center}
-.nav-links a{color:var(--cream);text-decoration:none;font-size:.88rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;opacity:.75;transition:opacity .2s,color .2s;position:relative}
-.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .3s}
+.nav-links a{color:var(--cream);text-decoration:none;font-size:.85rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;opacity:.8;transition:opacity .2s,color .2s;position:relative;cursor:pointer}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .3s}
 .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--gold)}
 .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
-.nav-cta{background:var(--amber);color:var(--cream)!important;padding:.55rem 1.4rem;border-radius:2px;opacity:1!important}
+.nav-cta{background:var(--amber)!important;color:var(--cream)!important;padding:.5rem 1.4rem!important;border-radius:2px;opacity:1!important;transition:background .25s,box-shadow .25s!important}
 .nav-cta::after{display:none!important}
-.nav-cta:hover{background:var(--amber-light)!important}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.3rem}
-.hamburger span{width:24px;height:2px;background:var(--cream);border-radius:2px}
-.mobile-menu{display:none;position:fixed;inset:0;background:var(--brown-deep);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
+.nav-cta:hover{background:var(--amber-light)!important;box-shadow:0 4px 16px rgba(200,114,10,.4)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.3rem;background:none;border:none}
+.hamburger span{width:24px;height:2px;background:var(--cream);border-radius:2px;transition:all .3s;display:block}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;inset:0;z-index:99;background:var(--brown-deep);flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
 .mobile-menu.open{display:flex}
-.mobile-menu a{font-size:1.4rem;font-weight:600;color:var(--cream);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;opacity:.8}
-.mobile-menu a:hover{opacity:1;color:var(--gold)}
+.mobile-menu a{font-size:1.5rem;font-weight:600;color:var(--cream);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;opacity:.75;cursor:pointer;transition:opacity .2s,color .2s}
+.mobile-menu a:hover,.mobile-menu a.active{opacity:1;color:var(--gold)}
 .mobile-menu .m-cta{background:var(--amber);color:var(--cream)!important;padding:.8rem 2.5rem;border-radius:2px;opacity:1!important}
-.mobile-close{position:absolute;top:1.8rem;right:5%;font-size:1.5rem;cursor:pointer;color:var(--cream);background:none;border:none}
 
-/* PAGE HERO */
-.page-hero{background:var(--brown-deep);padding:10rem 5% 5rem;position:relative;overflow:hidden}
-.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(200,114,10,.15),transparent 70%)}
-.page-hero-label{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem}
-.page-hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:700;color:var(--cream);line-height:1.1;max-width:700px}
-.page-hero-title em{font-style:italic;color:var(--amber-light)}
-.page-hero-sub{font-size:1rem;color:rgba(253,246,236,.6);line-height:1.8;max-width:520px;margin-top:1.2rem}
-.breadcrumb{display:flex;gap:.6rem;align-items:center;margin-top:2rem;font-size:.8rem;color:rgba(253,246,236,.35)}
-.breadcrumb a{color:rgba(253,246,236,.5);text-decoration:none;transition:color .2s}
-.breadcrumb a:hover{color:var(--gold)}
-.breadcrumb span{color:var(--amber-light)}
+/* ── BUTTONS ── */
+.btn-primary{background:var(--amber);color:var(--cream);padding:1rem 2.4rem;border:none;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;position:relative;overflow:hidden;transition:background .25s,transform .2s,box-shadow .25s}
+.btn-primary::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.12);transform:translateX(-110%) skewX(-15deg);transition:transform .45s}
+.btn-primary:hover{background:var(--amber-light);transform:translateY(-3px);box-shadow:0 12px 32px rgba(200,114,10,.4)}
+.btn-primary:hover::before{transform:translateX(130%) skewX(-15deg)}
+.btn-outline{background:transparent;color:var(--cream);padding:1rem 2.4rem;border:1px solid rgba(253,246,236,.4);border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:border-color .25s,background .25s,transform .2s}
+.btn-outline:hover{border-color:var(--gold);background:rgba(253,246,236,.07);transform:translateY(-3px)}
+.btn-dark{background:var(--brown-deep);color:var(--cream);padding:1rem 2.2rem;border:none;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:background .25s,transform .2s,box-shadow .25s}
+.btn-dark:hover{background:var(--brown-mid);transform:translateY(-3px);box-shadow:0 12px 32px rgba(44,17,0,.3)}
+.btn-outline-dark{background:transparent;color:var(--brown-deep);padding:1rem 2.4rem;border:2px solid var(--brown-deep);border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:background .25s,color .25s,transform .2s}
+.btn-outline-dark:hover{background:var(--brown-deep);color:var(--cream);transform:translateY(-3px)}
 
-/* SHARED */
-section{padding:5.5rem 5%}
+/* ── SECTIONS ── */
+section{padding:6rem 5%}
 .section-label{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem}
 .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:700;color:var(--brown-deep);line-height:1.2;margin-bottom:1.2rem}
 .section-title em{font-style:italic;color:var(--amber)}
-.section-body{font-size:1rem;color:var(--text-mid);line-height:1.8;max-width:580px}
+.section-body{font-size:1rem;color:var(--text-mid);line-height:1.8;max-width:560px}
 
-/* LOCATION */
-#location{background:var(--white)}
+/* ── PAGE HERO ── */
+.page-hero{background:var(--brown-deep);padding:10rem 5% 5rem;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(200,114,10,.15),transparent 70%)}
+.page-hero-label{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem}
+.page-hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:700;color:var(--cream);line-height:1.1;max-width:700px;animation:slideUp .7s ease both}
+.page-hero-title em{font-style:italic;color:var(--amber-light)}
+.page-hero-sub{font-size:1rem;color:rgba(253,246,236,.6);line-height:1.8;max-width:520px;margin-top:1.2rem;animation:slideUp .7s .15s ease both}
+.breadcrumb{display:flex;gap:.6rem;align-items:center;margin-top:2rem;font-size:.8rem;color:rgba(253,246,236,.35);animation:slideUp .7s .3s ease both}
+.breadcrumb a{color:rgba(253,246,236,.5);cursor:pointer;transition:color .2s}
+.breadcrumb a:hover{color:var(--gold)}
+.breadcrumb span{color:var(--amber-light)}
+
+/* ── HERO ── */
+#hero{min-height:100vh;background:var(--brown-deep);position:relative;display:flex;align-items:center;overflow:hidden}
+.hero-bg-img{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1920&q=80');background-size:cover;background-position:center;opacity:.18;animation:bgZoom 20s ease-in-out infinite alternate}
+@keyframes bgZoom{from{transform:scale(1)}to{transform:scale(1.08)}}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 70% 50%,rgba(200,114,10,.2),transparent 70%),radial-gradient(ellipse 40% 50% at 20% 80%,rgba(212,168,71,.12),transparent 60%)}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+.orb1{width:500px;height:500px;background:rgba(200,114,10,.13);top:-100px;right:-100px;animation:orbDrift 12s ease-in-out infinite alternate}
+.orb2{width:350px;height:350px;background:rgba(212,168,71,.09);bottom:-80px;left:10%;animation:orbDrift 15s ease-in-out infinite alternate-reverse}
+@keyframes orbDrift{from{transform:translate(0,0)}to{transform:translate(30px,-30px)}}
+#particles-canvas{position:absolute;inset:0;pointer-events:none}
+.hero-content{position:relative;z-index:2;max-width:660px;padding:0 5%;margin-top:5rem}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(200,114,10,.18);border:1px solid rgba(200,114,10,.35);border-radius:40px;padding:.45rem 1.2rem;font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-light);margin-bottom:2rem;animation:fadeInDown .7s ease both}
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:none}}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,7vw,5.8rem);font-weight:700;color:var(--cream);line-height:1.05;margin-bottom:1.8rem}
+.hero-title em{font-style:italic;color:var(--amber-light);display:block}
+#hero-last{display:block;opacity:.5;font-weight:300;font-size:.68em}
+.hero-sub{font-size:1.05rem;color:rgba(253,246,236,.65);line-height:1.8;max-width:520px;margin-bottom:2.5rem;animation:slideUp .8s .4s ease both}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:slideUp .8s .55s ease both}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+.hero-float{position:absolute;right:5%;top:50%;transform:translateY(-50%);z-index:2;animation:floatIn .9s .3s ease both}
+@keyframes floatIn{from{opacity:0;transform:translateY(-40%) scale(.95)}to{opacity:1;transform:translateY(-50%) scale(1)}}
+.hero-float-inner{background:rgba(253,246,236,.05);border:1px solid rgba(212,168,71,.22);border-radius:4px;padding:2rem;backdrop-filter:blur(14px);min-width:240px}
+.card-label{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(253,246,236,.4);margin-bottom:.5rem}
+.card-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cream);line-height:1.4;margin-bottom:1.5rem}
+.stat-row{display:flex;gap:2rem;border-top:1px solid rgba(253,246,236,.08);padding-top:1.2rem;margin-bottom:1.2rem}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--amber-light);display:block;line-height:1}
+.stat-label{font-size:.72rem;color:rgba(253,246,236,.4);letter-spacing:.1em;text-transform:uppercase;display:block;margin-top:.3rem}
+.card-tag{font-size:.76rem;color:var(--gold);font-weight:500}
+.hero-scroll{position:absolute;bottom:2.5rem;left:5%;display:flex;align-items:center;gap:.8rem;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(253,246,236,.35);z-index:2;animation:fadeIn 1s 1.5s ease both}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.scroll-line{width:40px;height:1px;background:rgba(253,246,236,.25);animation:expandLine 1s 2s ease both;transform-origin:left}
+@keyframes expandLine{from{width:0}to{width:40px}}
+.char{display:inline-block;opacity:0;animation:charIn .5s ease forwards}
+@keyframes charIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+
+/* BREAD IMAGES on hero */
+.hero-bread-img{position:absolute;right:0;top:0;bottom:0;width:48%;overflow:hidden;z-index:1;display:none}
+.hero-bread-img img{width:100%;height:100%;object-fit:cover;opacity:.32;mix-blend-mode:luminosity}
+
+/* ── MARQUEE ── */
+.marquee-strip{background:var(--amber);padding:.75rem 0;overflow:hidden;white-space:nowrap}
+.marquee-track{display:inline-flex;gap:2.5rem;animation:marquee 30s linear infinite}
+.marquee-track:hover{animation-play-state:paused}
+.marquee-track span{font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--brown-deep)}
+.marquee-dot{color:rgba(44,17,0,.4)}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;max-width:1200px;margin:0 auto;align-items:center}
+.about-img-wrap{position:relative;aspect-ratio:1;border-radius:4px;overflow:hidden}
+.about-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.about-img-wrap:hover img{transform:scale(1.06)}
+.about-img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(44,17,0,.6))}
+.about-img-frame{aspect-ratio:1;background:linear-gradient(135deg,var(--brown-deep) 60%,var(--brown-mid));border-radius:4px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.about-img-frame::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 40% 30%,rgba(200,114,10,.3),transparent 60%)}
+.steam-wrap{position:absolute;top:15%;left:50%;transform:translateX(-50%);display:flex;gap:12px}
+.steam{border-radius:8px;background:rgba(253,246,236,.25);animation:steamRise 2.5s ease-in-out infinite}
+.steam:nth-child(1){width:8px;height:30px}.steam:nth-child(2){width:8px;height:45px;animation-delay:.4s}.steam:nth-child(3){width:8px;height:25px;animation-delay:.8s}.steam:nth-child(4){width:8px;height:40px;animation-delay:1.2s}
+@keyframes steamRise{0%{transform:translateY(0);opacity:.6}50%{transform:translateY(-40px) scaleX(1.4);opacity:.3}100%{transform:translateY(-80px) scaleX(.8);opacity:0}}
+.bread-emoji{font-size:8rem;position:relative;z-index:1;filter:drop-shadow(0 8px 32px rgba(200,114,10,.4));animation:breadFloat 4s ease-in-out infinite}
+@keyframes breadFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-14px) rotate(2deg)}}
+.about-badge-float{position:absolute;bottom:-1.5rem;right:-1.5rem;background:var(--brown-deep);color:var(--cream);border-radius:3px;padding:1.5rem;box-shadow:0 8px 32px rgba(44,17,0,.3);animation:badgePop .5s .8s ease both}
+@keyframes badgePop{from{transform:scale(0) rotate(-10deg)}to{transform:scale(1) rotate(0)}}
+.about-badge-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:700;color:var(--amber-light);line-height:1;display:block}
+.about-badge-text{font-size:.75rem;color:rgba(253,246,236,.6);letter-spacing:.1em;text-transform:uppercase;display:block;margin-top:.3rem}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.5rem}
+.feat{background:var(--white);border:1px solid rgba(200,114,10,.15);border-radius:3px;padding:1.2rem;display:flex;align-items:flex-start;gap:.8rem;transition:border-color .3s,transform .3s,box-shadow .3s}
+.feat:hover{border-color:var(--amber);transform:translateY(-5px) scale(1.02);box-shadow:0 10px 28px rgba(200,114,10,.14)}
+.feat-icon{font-size:1.5rem;flex-shrink:0;transition:transform .3s}
+.feat:hover .feat-icon{transform:scale(1.2) rotate(-5deg)}
+.feat-title{font-weight:600;font-size:.9rem;color:var(--brown-deep)}
+.feat-desc{font-size:.8rem;color:var(--text-mid);line-height:1.5;margin-top:.2rem}
+
+/* ── COUNTERS ── */
+.counter-section{background:var(--brown-mid);padding:4rem 5%}
+.counters-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;max-width:1000px;margin:0 auto;text-align:center}
+.counter-num{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:700;color:var(--amber-light);line-height:1;display:block}
+.counter-label{font-size:.8rem;color:rgba(253,246,236,.55);letter-spacing:.15em;text-transform:uppercase;margin-top:.5rem;display:block}
+
+/* ── WHY ── */
+.why-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;max-width:1200px;margin:0 auto;align-items:center}
+.why-cards{display:flex;flex-direction:column;gap:1.2rem}
+.why-card{background:var(--white);border-radius:3px;padding:1.8rem;display:flex;gap:1.5rem;align-items:flex-start;border-left:3px solid transparent;transition:border-color .3s,transform .3s,box-shadow .3s,background .3s;box-shadow:0 2px 12px rgba(44,17,0,.06)}
+.why-card:hover{border-left-color:var(--amber);transform:translateX(8px);box-shadow:0 6px 28px rgba(44,17,0,.14);background:var(--cream-dark)}
+.why-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:700;color:var(--cream-dark);line-height:1;flex-shrink:0;width:2.5rem;text-align:right;transition:color .3s}
+.why-card:hover .why-num{color:rgba(200,114,10,.3)}
+.why-card-title{font-weight:600;font-size:1rem;color:var(--brown-deep);margin-bottom:.4rem}
+.why-card-desc{font-size:.87rem;color:var(--text-mid);line-height:1.7}
+.why-testimonial{background:var(--brown-deep);border-radius:3px;padding:3rem;position:relative;overflow:hidden}
+.why-testimonial::before{content:'\201C';position:absolute;top:-1rem;left:1.5rem;font-family:'Cormorant Garamond',serif;font-size:12rem;color:rgba(200,114,10,.12);line-height:1}
+.test-text{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-style:italic;color:var(--cream);line-height:1.65;position:relative;z-index:1;margin-bottom:2rem}
+.test-author{display:flex;align-items:center;gap:1rem}
+.test-avatar{width:48px;height:48px;background:var(--amber);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.test-name{font-weight:600;color:var(--cream);font-size:.9rem}
+.test-role{font-size:.78rem;color:rgba(253,246,236,.5)}
+.stars{color:var(--gold);letter-spacing:2px;display:block;margin-bottom:1rem}
+
+/* ── PRODUCTS ── */
+.products-header{max-width:1200px;margin:0 auto 3.5rem;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.8rem;max-width:1200px;margin:0 auto}
+.product-card{background:rgba(253,246,236,.04);border:1px solid rgba(212,168,71,.15);border-radius:6px;overflow:hidden;position:relative;cursor:default;transition:border-color .3s,transform .35s,box-shadow .35s;animation:cardEntrance .5s ease both}
+@keyframes cardEntrance{from{opacity:0;transform:translateY(30px) scale(.97)}to{opacity:1;transform:none}}
+.product-card:hover{border-color:rgba(212,168,71,.5);transform:translateY(-8px) scale(1.01);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.product-img{width:100%;height:200px;overflow:hidden;position:relative}
+.product-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;filter:brightness(.9)}
+.product-card:hover .product-img img{transform:scale(1.1);filter:brightness(1)}
+.product-img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(44,17,0,.5))}
+.product-body{padding:1.5rem}
+.product-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--cream);margin-bottom:.4rem}
+.product-desc{font-size:.82rem;color:rgba(253,246,236,.52);line-height:1.7}
+.product-footer{display:flex;align-items:center;justify-content:space-between;margin-top:1.2rem;padding-top:1rem;border-top:1px solid rgba(253,246,236,.08)}
+.product-price{font-weight:700;color:var(--amber-light);font-size:1rem}
+.product-badge{position:absolute;top:.8rem;left:.8rem;background:var(--amber);color:var(--cream);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .6rem;border-radius:2px;z-index:1}
+.product-order-btn{font-size:.75rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;background:none;border:1px solid rgba(212,168,71,.3);border-radius:2px;padding:.3rem .7rem;cursor:pointer;transition:background .25s,color .25s;text-decoration:none}
+.product-order-btn:hover{background:var(--amber);color:var(--cream);border-color:var(--amber)}
+.view-all-wrap{max-width:1200px;margin:3rem auto 0;text-align:center}
+.bulk-inner{max-width:800px;margin:0 auto;text-align:center}
+.bulk-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem}
+
+/* ── GALLERY STRIP ── */
+.gallery-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;max-width:100%;overflow:hidden}
+.gallery-img{aspect-ratio:1;overflow:hidden;position:relative}
+.gallery-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease,filter .6s ease;filter:brightness(.75) saturate(.9)}
+.gallery-img:hover img{transform:scale(1.12);filter:brightness(1) saturate(1.1)}
+
+/* ── LOCATION ── */
 .location-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1200px;margin:0 auto;align-items:start}
-.map-frame{aspect-ratio:4/3;background:var(--cream-dark);border-radius:4px;overflow:hidden;border:1px solid rgba(200,114,10,.2)}
+.map-frame{aspect-ratio:4/3;border-radius:4px;overflow:hidden;border:1px solid rgba(200,114,10,.2);position:relative}
 .map-frame iframe{width:100%;height:100%;border:none;display:block}
 .contact-cards{display:flex;flex-direction:column;gap:1rem}
 .contact-card{background:var(--cream);border:1px solid rgba(200,114,10,.15);border-radius:3px;padding:1.4rem 1.6rem;display:flex;align-items:center;gap:1.2rem;text-decoration:none;transition:border-color .25s,transform .25s,box-shadow .25s;box-shadow:0 2px 8px rgba(44,17,0,.05)}
@@ -78,221 +226,459 @@ section{padding:5.5rem 5%}
 .hours-time{font-size:.85rem;color:var(--amber-light);font-weight:500}
 .hours-note{font-size:.78rem;color:rgba(253,246,236,.4);line-height:1.6;margin-top:1rem}
 
-/* ORDER CTA */
-#order{background:var(--amber);position:relative;overflow:hidden;text-align:center;padding:5rem 5%}
-#order::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(255,255,255,.12),transparent 70%)}
+/* ── ORDER CTA ── */
+.order-cta-section{background:var(--amber);position:relative;overflow:hidden;text-align:center;padding:6rem 5%}
+.order-cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(255,255,255,.12),transparent 70%)}
 .order-ring{position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.15);top:50%;left:50%;transform:translate(-50%,-50%);animation:ringExpand 4s ease-out infinite}
-.order-ring:nth-child(2){animation-delay:1.3s}
-.order-ring:nth-child(3){animation-delay:2.6s}
+.order-ring:nth-child(2){animation-delay:1.3s}.order-ring:nth-child(3){animation-delay:2.6s}
 @keyframes ringExpand{from{width:0;height:0;opacity:.8}to{width:900px;height:900px;opacity:0}}
-#order .section-label{color:rgba(253,246,236,.7)}
-#order .section-title{color:var(--brown-deep);max-width:700px;margin:0 auto 1rem}
-#order .section-body{color:rgba(44,17,0,.7);max-width:500px;margin:0 auto 2.5rem}
+.order-cta-section .section-title{color:var(--brown-deep);max-width:700px;margin:0 auto 1rem}
+.order-cta-section .section-label{color:rgba(253,246,236,.75)}
+.order-cta-section .section-body{color:rgba(44,17,0,.72);max-width:500px;margin:0 auto 2.5rem}
 .order-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
-.btn-dark{background:var(--brown-deep);color:var(--cream);padding:1rem 2.2rem;border:none;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:background .25s,transform .2s,box-shadow .25s}
-.btn-dark:hover{background:var(--brown-mid);transform:translateY(-3px);box-shadow:0 12px 32px rgba(44,17,0,.3)}
 
-/* FOOTER */
+/* ── FOOTER ── */
 footer{background:var(--brown-deep);padding:4rem 5% 2.5rem}
-.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;max-width:1200px;margin:0 auto 3rem}
-.footer-brand .nav-logo{display:inline-block;margin-bottom:1rem;font-size:1.6rem}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:3rem;max-width:1200px;margin:0 auto 3rem}
+.footer-logo{font-family:'UnifrakturMaguntia',cursive;font-size:1.7rem;color:var(--cream);letter-spacing:.06em;cursor:pointer;display:inline-block;margin-bottom:1rem;transition:text-shadow .3s}
+.footer-logo:hover{text-shadow:0 0 20px rgba(200,114,10,.5)}
+.footer-logo span{color:var(--amber-light)}
 .footer-desc{font-size:.87rem;color:rgba(253,246,236,.5);line-height:1.8;max-width:280px}
 .footer-social{display:flex;gap:.8rem;margin-top:1.5rem}
 .social-btn{width:40px;height:40px;border:1px solid rgba(253,246,236,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;text-decoration:none;color:rgba(253,246,236,.6);transition:border-color .25s,color .25s,background .25s,transform .25s}
 .social-btn:hover{border-color:var(--amber);color:var(--amber);background:rgba(200,114,10,.1);transform:translateY(-4px) rotate(-8deg)}
 .footer-col-title{font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:1.2rem}
 .footer-links{list-style:none;display:flex;flex-direction:column;gap:.7rem}
-.footer-links a{text-decoration:none;font-size:.88rem;color:rgba(253,246,236,.5);transition:color .2s,padding-left .2s;display:inline-block}
+.footer-links a{text-decoration:none;font-size:.88rem;color:rgba(253,246,236,.5);transition:color .2s,padding-left .2s;display:inline-block;cursor:pointer}
 .footer-links a:hover{color:var(--cream);padding-left:6px}
 .footer-bottom{border-top:1px solid rgba(253,246,236,.08);padding-top:1.8rem;max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
 .footer-copy{font-size:.8rem;color:rgba(253,246,236,.3)}
 .footer-copy span{color:var(--amber-light)}
+.footer-by{font-size:.8rem;color:rgba(253,246,236,.25)}
+.footer-by a{color:var(--gold);text-decoration:none;transition:color .2s}
+.footer-by a:hover{color:var(--amber-light)}
 
-/* REVEAL */
+/* ── REVEAL ── */
 .reveal{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease}
-.reveal.from-left{transform:translateX(-40px)}
-.reveal.visible{opacity:1;transform:translate(0)}
-.reveal-delay-1{transition-delay:.12s}
-.reveal-delay-2{transition-delay:.24s}
-.reveal-delay-3{transition-delay:.36s}
-.reveal-delay-4{transition-delay:.48s}
+.reveal.from-left{transform:translateX(-50px)}.reveal.from-right{transform:translateX(50px)}
+.reveal.from-scale{transform:scale(.92)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}.reveal-delay-4{transition-delay:.4s}
+.reveal-delay-5{transition-delay:.5s}.reveal-delay-6{transition-delay:.6s}
+
+/* ── SHIMMER on img ── */
+.shimmer{position:relative;overflow:hidden}
+.shimmer::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.12) 50%,transparent 70%);transform:translateX(-100%);transition:transform .6s}
+.shimmer:hover::after{transform:translateX(100%)}
 
 @media(max-width:900px){
-  .location-grid,.footer-grid{grid-template-columns:1fr;gap:2.5rem}
-  .nav-links{display:none}
-  .hamburger{display:flex}
+  .hero-float,.orb1,.orb2{display:none}
+  .about-grid,.why-grid,.location-grid,.footer-grid{grid-template-columns:1fr;gap:2.5rem}
+  .counters-grid{grid-template-columns:repeat(2,1fr)}
+  .nav-links{display:none}.hamburger{display:flex}
+  .feat-grid{grid-template-columns:1fr}
+  .products-header{flex-direction:column;align-items:flex-start}
+  .gallery-strip{grid-template-columns:repeat(3,1fr)}
+  .products-grid{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
 }
 @media(max-width:600px){
-  section{padding:4rem 5%}
-  .footer-grid{grid-template-columns:1fr 1fr}
-  .order-actions{flex-direction:column;align-items:center}
+  section{padding:4.5rem 5%}
+  .hero-actions,.order-actions,.bulk-actions{flex-direction:column;align-items:center}
+  .footer-grid{grid-template-columns:1fr}
+  .counters-grid{grid-template-columns:1fr 1fr}
+  .products-grid{grid-template-columns:1fr}
+  .gallery-strip{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
 <body>
 
-<!-- MOBILE MENU -->
+<div id="loader"><div class="loader-logo">Bread<span>Mall</span></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div><div class="loader-text">Loading freshness...</div></div>
+
 <div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-close" id="mobileClose">✕</button>
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="menu.html">Our Menu</a>
-  <a href="contact.html" class="active">Find Us</a>
-  <a href="contact.html" class="m-cta">Order Now</a>
+  <a data-page="home" class="active">Home</a>
+  <a data-page="about">About</a>
+  <a data-page="menu">Our Menu</a>
+  <a data-page="contact">Find Us</a>
+  <a data-page="contact" class="m-cta">Order Now</a>
 </div>
 
-<!-- NAV -->
 <nav id="navbar">
-  <a href="index.html" class="nav-logo">Bread<span>Mall</span></a>
+  <span class="nav-logo" data-page="home">Bread<span>Mall</span></span>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="menu.html">Our Menu</a></li>
-    <li><a href="contact.html" class="active">Find Us</a></li>
-    <li><a href="contact.html" class="nav-cta">Order Now</a></li>
+    <li><a data-page="home" class="active">Home</a></li>
+    <li><a data-page="about">About</a></li>
+    <li><a data-page="menu">Our Menu</a></li>
+    <li><a data-page="contact">Find Us</a></li>
+    <li><a data-page="contact" class="nav-cta">Order Now</a></li>
   </ul>
-  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
 </nav>
 
-<!-- PAGE HERO -->
-<div class="page-hero">
-  <p class="page-hero-label">Location &amp; Contact</p>
-  <h1 class="page-hero-title">Come <em>Visit</em> the Bakery</h1>
-  <p class="page-hero-sub">We are at No 2 Ezimgbu (Mummy-B) Link Road, off Stadium Road, Port Harcourt. Open 7 days a week.</p>
-  <div class="breadcrumb">
-    <a href="index.html">Home</a> › <span>Find Us</span>
+<!-- ══════════ HOME ══════════ -->
+<div class="page active" id="page-home">
+  <section id="hero">
+    <div class="hero-bg-img"></div>
+    <div class="hero-bg"></div>
+    <div class="orb orb1"></div><div class="orb orb2"></div>
+    <canvas id="particles-canvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-badge">🔥 100% Quality Oven Fresh Bread — All Day</div>
+      <h1 class="hero-title"><span>Taste &amp; Find</span><br><em id="hero-em">The Difference.</em><span id="hero-last">Every Day.</span></h1>
+      <p class="hero-sub">Bread Mall is Port Harcourt's first see-through bakery where 100% Quality Oven Fresh Bread is sold All Day. Come in, see your bread being baked, and leave with something truly fresh.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" data-page="menu">🍞 Our Breads</button>
+        <button class="btn-outline" data-page="contact">📍 Find Us</button>
+      </div>
+    </div>
+    <div class="hero-float"><div class="hero-float-inner">
+      <div class="card-label">A Place with a Difference</div>
+      <div class="card-title">Exquisite. Serene. 100% Oven Fresh. Always.</div>
+      <div class="stat-row">
+        <div class="stat"><span class="stat-num" id="float-rating">0</span><span class="stat-label">Rating ★</span></div>
+        <div class="stat"><span class="stat-num">13<small style="font-size:.5em">hrs</small></span><span class="stat-label">Daily Baking</span></div>
+      </div>
+      <span class="card-tag">🏆 PH's #1 See-Through Bakery</span>
+    </div></div>
+    <div class="hero-scroll">Scroll<div class="scroll-line"></div></div>
+  </section>
+
+  <div class="marquee-strip"><div class="marquee-track">
+    <span>Oven Fresh Bread</span><span class="marquee-dot">✦</span><span>Freshly Baked All Day</span><span class="marquee-dot">✦</span><span>100% Quality Guaranteed</span><span class="marquee-dot">✦</span><span>Port Harcourt's First See-Through Bakery</span><span class="marquee-dot">✦</span><span>No 2 Ezimgbu Link Road</span><span class="marquee-dot">✦</span><span>Stadium Road Axis</span><span class="marquee-dot">✦</span><span>Oven Fresh Bread</span><span class="marquee-dot">✦</span><span>Freshly Baked All Day</span><span class="marquee-dot">✦</span><span>100% Quality Guaranteed</span><span class="marquee-dot">✦</span><span>Port Harcourt's First See-Through Bakery</span><span class="marquee-dot">✦</span><span>No 2 Ezimgbu Link Road</span><span class="marquee-dot">✦</span><span>Stadium Road Axis</span><span class="marquee-dot">✦</span>
+  </div></div>
+
+  <!-- GALLERY STRIP -->
+  <div class="gallery-strip">
+    <div class="gallery-img shimmer"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80" alt="Fresh bread" loading="lazy"></div>
+    <div class="gallery-img shimmer"><img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?auto=format&fit=crop&w=400&q=80" alt="Baguette" loading="lazy"></div>
+    <div class="gallery-img shimmer"><img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=400&q=80" alt="Croissant" loading="lazy"></div>
+    <div class="gallery-img shimmer"><img src="https://images.unsplash.com/photo-1585478259715-1c195ae2b568?auto=format&fit=crop&w=400&q=80" alt="Sourdough" loading="lazy"></div>
+    <div class="gallery-img shimmer"><img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=400&q=80" alt="Rolls" loading="lazy"></div>
   </div>
+
+  <section style="background:var(--cream-dark)"><div class="about-grid">
+    <div class="reveal from-left" style="position:relative">
+      <div class="about-img-wrap">
+        <img src="https://images.unsplash.com/photo-1574239206242-37a5fba2dd98?auto=format&fit=crop&w=700&q=80" alt="Bread Mall Bakery">
+        <div class="about-img-overlay"></div>
+      </div>
+      <div class="about-badge-float"><span class="about-badge-num">100%</span><span class="about-badge-text">Oven Fresh<br>Promise</span></div>
+    </div>
+    <div>
+      <span class="section-label reveal">Who We Are</span>
+      <h2 class="section-title reveal reveal-delay-1">A Place to Find &amp; <em>Taste the Difference</em></h2>
+      <p class="section-body reveal reveal-delay-2">Bread Mall is Port Harcourt's first see-through bakery — walk in, see your bread being made right in front of you, and leave with something warm, fresh, and truly different. 100% Quality Oven Fresh Bread sold All Day.</p>
+      <div class="feat-grid">
+        <div class="feat reveal reveal-delay-1"><div class="feat-icon">👁️</div><div><div class="feat-title">See-Through Kitchen</div><div class="feat-desc">Watch your bread baked live — full transparency.</div></div></div>
+        <div class="feat reveal reveal-delay-2"><div class="feat-icon">🔥</div><div><div class="feat-title">Oven Fresh All Day</div><div class="feat-desc">Baking from 8am to 9pm, every day.</div></div></div>
+        <div class="feat reveal reveal-delay-3"><div class="feat-icon">💯</div><div><div class="feat-title">100% Quality</div><div class="feat-desc">No shortcuts, no compromise. Every bake.</div></div></div>
+        <div class="feat reveal reveal-delay-4"><div class="feat-icon">🌿</div><div><div class="feat-title">Serene Environment</div><div class="feat-desc">Exquisite place with a great view.</div></div></div>
+      </div>
+      <div style="margin-top:2rem"><button class="btn-primary" data-page="about">Learn More About Us</button></div>
+    </div>
+  </div></section>
+
+  <div class="counter-section"><div class="counters-grid">
+    <div class="reveal"><span class="counter-num" data-target="100" data-suffix="%">0%</span><span class="counter-label">Fresh Daily</span></div>
+    <div class="reveal reveal-delay-1"><span class="counter-num" data-target="4.8" data-decimal="1" data-suffix="★">0★</span><span class="counter-label">Star Rating</span></div>
+    <div class="reveal reveal-delay-2"><span class="counter-num" data-target="1" data-prefix="#">#0</span><span class="counter-label">See-Through Bakery in PH</span></div>
+    <div class="reveal reveal-delay-3"><span class="counter-num" data-target="13" data-suffix="hrs">0hrs</span><span class="counter-label">Daily Baking Hours</span></div>
+  </div></div>
+
+  <section style="background:var(--brown-deep)">
+    <div class="products-header">
+      <div><span class="section-label reveal">What We Sell</span><h2 class="section-title reveal reveal-delay-1" style="color:var(--cream)">100% Quality <em>Oven Fresh</em> Bread</h2><p class="section-body reveal reveal-delay-2" style="color:rgba(253,246,236,.65)">Every loaf baked fresh and sold hot — All Day, Every Day.</p></div>
+      <button class="btn-primary reveal" data-page="menu" style="white-space:nowrap;align-self:flex-end">View Full Menu →</button>
+    </div>
+    <div class="products-grid">
+      <div class="product-card reveal"><span class="product-badge">Customer Fav</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Classic White Loaf" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Classic White Loaf</div><div class="product-desc">Soft, fluffy, golden crust. Sold fresh all day. The bread Port Harcourt keeps coming back for.</div><div class="product-footer"><span class="product-price">From ₦800</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+      <div class="product-card reveal reveal-delay-1"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?auto=format&fit=crop&w=600&q=80" alt="Whole Wheat Loaf" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Whole Wheat Loaf</div><div class="product-desc">Hearty and wholesome. Baked with quality wheat, sold oven-hot. A healthier choice that still delights.</div><div class="product-footer"><span class="product-price">From ₦950</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+      <div class="product-card reveal reveal-delay-2"><span class="product-badge">Fresh Daily</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=600&q=80" alt="Sweet Bread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Sweet Bread</div><div class="product-desc">Lightly sweet, incredibly soft. Perfect for morning tea or straight out of the wrapper, still warm.</div><div class="product-footer"><span class="product-price">From ₦900</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+      <div class="product-card reveal reveal-delay-3"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80" alt="Mini Rolls" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Mini Rolls</div><div class="product-desc">Great for sharing, snacking, or pairing with your favourite stew.</div><div class="product-footer"><span class="product-price">From ₦300</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+    </div>
+    <div class="view-all-wrap reveal"><button class="btn-outline" data-page="menu" style="color:var(--cream);border-color:rgba(253,246,236,.3)">See All 15 Products &amp; Bulk Orders →</button></div>
+  </section>
+
+  <section class="order-cta-section">
+    <div class="order-ring"></div><div class="order-ring"></div><div class="order-ring"></div>
+    <span class="section-label">Come Get Your Bread</span>
+    <h2 class="section-title">100% Quality <em>Oven Fresh</em> Bread. All Day.</h2>
+    <p class="section-body">Walk in and taste the difference. Or call and WhatsApp us — we are always ready.</p>
+    <div class="order-actions">
+      <a href="https://wa.me/2349033519927?text=Hi%20Bread%20Mall%2C%20I%27d%20like%20to%20place%20an%20order" class="btn-dark" target="_blank">💬 WhatsApp Us</a>
+      <a href="tel:+2349033519927" class="btn-dark">📞 Call Now</a>
+      <button class="btn-dark" data-page="contact">📍 Get Directions</button>
+    </div>
+  </section>
+
+  <footer><div class="footer-grid">
+    <div><span class="footer-logo" data-page="home">Bread<span>Mall</span></span><p class="footer-desc">Port Harcourt's first see-through bakery. 100% Quality Oven Fresh Bread, sold All Day.</p><div class="footer-social"><a href="https://www.instagram.com/officialbreadmallbakery" class="social-btn" target="_blank">📸</a><a href="https://www.facebook.com/p/officialbreadmallbakery-100063736293703/" class="social-btn" target="_blank">👍</a><a href="https://wa.me/2349033519927" class="social-btn" target="_blank">💬</a><a href="mailto:breadmall19@gmail.com" class="social-btn">✉️</a></div></div>
+    <div><div class="footer-col-title">Pages</div><ul class="footer-links"><li><a data-page="home">Home</a></li><li><a data-page="about">About Us</a></li><li><a data-page="menu">Our Menu</a></li><li><a data-page="contact">Find Us</a></li><li><a data-page="contact">Order Now</a></li></ul></div>
+    <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="tel:+2349033519927">+234 903 351 9927</a></li><li><a href="mailto:breadmall19@gmail.com">breadmall19@gmail.com</a></li><li><a>No 2 Ezimgbu (Mummy-B), Link Road</a></li><li><a>Port Harcourt, Rivers State</a></li></ul></div>
+  </div><div class="footer-bottom"><p class="footer-copy">© 2026 <span>Bread Mall Bakery</span>. All rights reserved. Port Harcourt, Rivers State.</p><p class="footer-by">by <a href="https://victorvandi.com/" target="_blank">victorvandi.com</a></p></div></footer>
 </div>
 
-<!-- LOCATION -->
-<section id="location">
-  <div style="max-width:1200px;margin:0 auto 3rem">
-    <span class="section-label reveal">Where to Find Us</span>
-    <h2 class="section-title reveal reveal-delay-1">Our <em>Location</em> &amp; Hours</h2>
-  </div>
-  <div class="location-grid">
-    <div class="map-frame reveal from-left">
-      <iframe
-        src="https://www.google.com/maps?q=No+2+Ezimgbu+Link+Road+off+Stadium+Road+Port+Harcourt+Nigeria&output=embed"
-        allowfullscreen="" loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        title="Bread Mall Bakery Location">
-      </iframe>
-    </div>
-    <div>
-      <div class="contact-cards">
-        <a href="https://www.google.com/maps?q=No+2+Ezimgbu+Link+Road+Port+Harcourt" class="contact-card reveal" target="_blank">
-          <div class="contact-icon">📍</div>
-          <div>
-            <div class="contact-label">Address</div>
-            <div class="contact-value">No 2 Ezimgbu (Mummy-B) Link Road<br>off Stadium Road, Port Harcourt</div>
-          </div>
-        </a>
-        <a href="tel:+2349033519927" class="contact-card reveal reveal-delay-1">
-          <div class="contact-icon">📞</div>
-          <div>
-            <div class="contact-label">Call Us</div>
-            <div class="contact-value">+234 903 351 9927</div>
-          </div>
-        </a>
-        <a href="https://wa.me/2349033519927" class="contact-card reveal reveal-delay-2" target="_blank">
-          <div class="contact-icon">💬</div>
-          <div>
-            <div class="contact-label">WhatsApp</div>
-            <div class="contact-value">Chat to place or inquire about orders</div>
-          </div>
-        </a>
-        <a href="mailto:breadmall19@gmail.com" class="contact-card reveal reveal-delay-3">
-          <div class="contact-icon">✉️</div>
-          <div>
-            <div class="contact-label">Email</div>
-            <div class="contact-value">breadmall19@gmail.com</div>
-          </div>
-        </a>
-        <a href="https://www.instagram.com/officialbreadmallbakery" class="contact-card reveal reveal-delay-4" target="_blank">
-          <div class="contact-icon">📸</div>
-          <div>
-            <div class="contact-label">Instagram</div>
-            <div class="contact-value">@officialbreadmallbakery</div>
-          </div>
-        </a>
-      </div>
-      <div class="hours-block reveal">
-        <div class="hours-title">🕐 Opening Hours</div>
-        <div class="hours-row"><span class="hours-day">Monday</span><span class="hours-time">8:00 AM – 9:00 PM</span></div>
-        <div class="hours-row"><span class="hours-day">Tuesday</span><span class="hours-time">8:00 AM – 9:00 PM</span></div>
-        <div class="hours-row"><span class="hours-day">Wednesday</span><span class="hours-time">8:00 AM – 9:00 PM</span></div>
-        <div class="hours-row"><span class="hours-day">Thursday</span><span class="hours-time">8:00 AM – 9:00 PM</span></div>
-        <div class="hours-row"><span class="hours-day">Friday</span><span class="hours-time">8:00 AM – 9:00 PM</span></div>
-        <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">8:00 AM – 9:00 PM</span></div>
-        <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time">11:00 AM – 9:00 PM</span></div>
-        <p class="hours-note">Bread baked and sold fresh throughout opening hours. Come early for first batch or late — we are always baking.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ══════════ ABOUT ══════════ -->
+<div class="page" id="page-about">
+  <div class="page-hero"><p class="page-hero-label">Our Story</p><h1 class="page-hero-title">A Place to Find &amp; <em>Taste the Difference</em></h1><p class="page-hero-sub">Port Harcourt's first see-through bakery — built on the belief that fresh bread deserves to be seen being made.</p><div class="breadcrumb"><a data-page="home">Home</a> › <span>About Us</span></div></div>
 
-<!-- ORDER CTA -->
-<section id="order">
-  <div class="order-ring"></div><div class="order-ring"></div><div class="order-ring"></div>
-  <span class="section-label">Place Your Order</span>
-  <h2 class="section-title">Ready for <em>Fresh Bread?</em></h2>
-  <p class="section-body">Walk in and taste the difference. Or reach us on WhatsApp — we are always ready for you.</p>
-  <div class="order-actions">
-    <a href="https://wa.me/2349033519927?text=Hi%20Bread%20Mall%2C%20I%27d%20like%20to%20place%20an%20order" class="btn-dark" target="_blank">💬 WhatsApp Us</a>
-    <a href="tel:+2349033519927" class="btn-dark">📞 Call Now</a>
-    <a href="https://www.google.com/maps?q=No+2+Ezimgbu+Link+Road+Port+Harcourt" class="btn-dark" target="_blank">📍 Get Directions</a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <a href="index.html" class="nav-logo">Bread<span>Mall</span></a>
-      <p class="footer-desc">A Bakery where 100% Quality Oven Fresh Bread is sold All Day. Port Harcourt's first see-through bakery — a place to find and taste the difference.</p>
-      <div class="footer-social">
-        <a href="https://www.instagram.com/officialbreadmallbakery" class="social-btn" target="_blank">📸</a>
-        <a href="https://www.facebook.com/p/officialbreadmallbakery-100063736293703/" class="social-btn" target="_blank">👍</a>
-        <a href="https://wa.me/2349033519927" class="social-btn" target="_blank">💬</a>
-        <a href="mailto:breadmall19@gmail.com" class="social-btn">✉️</a>
+  <section style="background:var(--cream-dark)"><div class="about-grid">
+    <div class="reveal from-left" style="position:relative">
+      <div class="about-img-wrap">
+        <img src="https://images.unsplash.com/photo-1574239206242-37a5fba2dd98?auto=format&fit=crop&w=700&q=80" alt="Fresh baked bread">
+        <div class="about-img-overlay"></div>
+      </div>
+      <div class="about-badge-float"><span class="about-badge-num">100%</span><span class="about-badge-text">Oven Fresh<br>Promise</span></div>
+    </div>
+    <div>
+      <span class="section-label reveal">Who We Are</span>
+      <h2 class="section-title reveal reveal-delay-1">Bread Mall Bakery — <em>Port Harcourt's First</em></h2>
+      <p class="section-body reveal reveal-delay-2">Bread Mall is a Bakery where 100% Quality Oven Fresh Bread is sold All Day. We are Port Harcourt's first see-through bakery — walk in, see your bread being made right in front of you, and leave with something warm, fresh, and truly different.</p>
+      <p class="section-body reveal reveal-delay-3" style="margin-top:1rem">Located at No 2 Ezimgbu (Mummy-B) Link Road off Stadium Road — an exquisite place with a great view and serene environment. Truly a place with a Difference.</p>
+      <div class="feat-grid">
+        <div class="feat reveal reveal-delay-1"><div class="feat-icon">👁️</div><div><div class="feat-title">See-Through Kitchen</div><div class="feat-desc">Watch your bread baked live — nothing hidden. Pure transparency.</div></div></div>
+        <div class="feat reveal reveal-delay-2"><div class="feat-icon">🔥</div><div><div class="feat-title">Oven Fresh All Day</div><div class="feat-desc">We bake from 8am to 9pm so every loaf is truly hot and fresh.</div></div></div>
+        <div class="feat reveal reveal-delay-3"><div class="feat-icon">💯</div><div><div class="feat-title">100% Quality</div><div class="feat-desc">No shortcuts. No compromise. Every single bake.</div></div></div>
+        <div class="feat reveal reveal-delay-4"><div class="feat-icon">🌿</div><div><div class="feat-title">Serene Environment</div><div class="feat-desc">A great view, a calm space — a real Difference.</div></div></div>
       </div>
     </div>
+  </div></section>
+
+  <div class="counter-section"><div class="counters-grid">
+    <div class="reveal"><span class="counter-num" data-target="100" data-suffix="%">0%</span><span class="counter-label">Fresh Daily</span></div>
+    <div class="reveal reveal-delay-1"><span class="counter-num" data-target="4.8" data-decimal="1" data-suffix="★">0★</span><span class="counter-label">Star Rating</span></div>
+    <div class="reveal reveal-delay-2"><span class="counter-num" data-target="1" data-prefix="#">#0</span><span class="counter-label">See-Through Bakery in PH</span></div>
+    <div class="reveal reveal-delay-3"><span class="counter-num" data-target="13" data-suffix="hrs">0hrs</span><span class="counter-label">Daily Baking Hours</span></div>
+  </div></div>
+
+  <section style="background:var(--white)"><div class="why-grid">
     <div>
-      <div class="footer-col-title">Pages</div>
-      <ul class="footer-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="menu.html">Our Menu</a></li>
-        <li><a href="contact.html">Find Us</a></li>
-      </ul>
+      <span class="section-label reveal">Why Bread Mall</span>
+      <h2 class="section-title reveal reveal-delay-1">Truly a Place <em>with a Difference</em></h2>
+      <div class="why-cards">
+        <div class="why-card reveal reveal-delay-1"><div class="why-num">01</div><div><div class="why-card-title">You See It Being Baked</div><div class="why-card-desc">Our see-through kitchen is open for everyone. Watch your bread go from dough to golden loaf — full transparency, zero doubt.</div></div></div>
+        <div class="why-card reveal reveal-delay-2"><div class="why-num">02</div><div><div class="why-card-title">100% Quality. Every Time.</div><div class="why-card-desc">Every loaf that leaves our oven is held to the same standard — fresh, soft, and perfect.</div></div></div>
+        <div class="why-card reveal reveal-delay-3"><div class="why-num">03</div><div><div class="why-card-title">Sold Fresh All Day</div><div class="why-card-desc">We bake from 8am to 9pm. You will never leave with bread that has been sitting since morning.</div></div></div>
+        <div class="why-card reveal reveal-delay-4"><div class="why-num">04</div><div><div class="why-card-title">Serene &amp; Great Environment</div><div class="why-card-desc">An exquisite place with a great view — a calm, welcoming space for everyone in Port Harcourt.</div></div></div>
+      </div>
     </div>
-    <div>
-      <div class="footer-col-title">Contact</div>
-      <ul class="footer-links">
-        <li><a href="tel:+2349033519927">+234 903 351 9927</a></li>
-        <li><a href="mailto:breadmall19@gmail.com">breadmall19@gmail.com</a></li>
-        <li><a href="#">No 2 Ezimgbu (Mummy-B)</a></li>
-        <li><a href="#">Link Road, off Stadium Rd</a></li>
-        <li><a href="#">Port Harcourt, Rivers State</a></li>
-      </ul>
+    <div class="why-testimonial reveal from-right">
+      <span class="stars">★★★★★</span>
+      <p class="test-text">"A place to find and taste the difference. An exquisite place with a great view and serene environment. The bread is always fresh and hot. I will not go anywhere else."</p>
+      <div class="test-author"><div class="test-avatar">😊</div><div><div class="test-name">Verified Customer</div><div class="test-role">Port Harcourt, Rivers State</div></div></div>
     </div>
-  </div>
-  <div class="footer-bottom">
-    <p class="footer-copy">© 2026 <span>Bread Mall Bakery</span>. All rights reserved.</p>
-    <p class="footer-copy">Freshly Baked All Day 🍞</p>
-  </div>
-</footer>
+  </div></section>
+
+  <footer><div class="footer-grid">
+    <div><span class="footer-logo" data-page="home">Bread<span>Mall</span></span><p class="footer-desc">Port Harcourt's first see-through bakery. 100% Quality Oven Fresh Bread, sold All Day.</p><div class="footer-social"><a href="https://www.instagram.com/officialbreadmallbakery" class="social-btn" target="_blank">📸</a><a href="https://www.facebook.com/p/officialbreadmallbakery-100063736293703/" class="social-btn" target="_blank">👍</a><a href="https://wa.me/2349033519927" class="social-btn" target="_blank">💬</a><a href="mailto:breadmall19@gmail.com" class="social-btn">✉️</a></div></div>
+    <div><div class="footer-col-title">Pages</div><ul class="footer-links"><li><a data-page="home">Home</a></li><li><a data-page="about">About Us</a></li><li><a data-page="menu">Our Menu</a></li><li><a data-page="contact">Find Us</a></li></ul></div>
+    <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="tel:+2349033519927">+234 903 351 9927</a></li><li><a href="mailto:breadmall19@gmail.com">breadmall19@gmail.com</a></li><li><a>No 2 Ezimgbu (Mummy-B), Link Road</a></li><li><a>Port Harcourt, Rivers State</a></li></ul></div>
+  </div><div class="footer-bottom"><p class="footer-copy">© 2026 <span>Bread Mall Bakery</span>. All rights reserved.</p><p class="footer-by">by <a href="https://victorvandi.com/" target="_blank">victorvandi.com</a></p></div></footer>
+</div>
+
+<!-- ══════════ MENU ══════════ -->
+<div class="page" id="page-menu">
+  <div class="page-hero"><p class="page-hero-label">Our Products</p><h1 class="page-hero-title">15 Freshly Baked <em>Breads</em></h1><p class="page-hero-sub">Every loaf baked fresh and sold hot — All Day, Every Day. No stale bread. Ever.</p><div class="breadcrumb"><a data-page="home">Home</a> › <span>Our Menu</span></div></div>
+
+  <section style="background:var(--brown-deep)">
+    <div class="products-header"><div><span class="section-label reveal">What We Sell</span><h2 class="section-title reveal reveal-delay-1" style="color:var(--cream)">Baked Fresh. <em>Sold Hot.</em></h2><p class="section-body reveal reveal-delay-2" style="color:rgba(253,246,236,.65)">We bake all day, every day. Everything sold fresh — straight from the oven to your hands.</p></div></div>
+    <div class="products-grid">
+
+      <div class="product-card reveal"><span class="product-badge">Customer Fav</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Classic White Loaf" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Classic White Loaf</div><div class="product-desc">Our signature — soft, fluffy, golden crust. Sold fresh all day. The bread Port Harcourt keeps coming back for, sliced or whole.</div><div class="product-footer"><span class="product-price">From ₦800</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+
+      <div class="product-card reveal reveal-delay-1"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?auto=format&fit=crop&w=600&q=80" alt="Whole Wheat Loaf" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Whole Wheat Loaf</div><div class="product-desc">Hearty, nutty, and wholesome. Baked with quality wheat and sold oven-hot. A healthier choice that still tastes like a treat.</div><div class="product-footer"><span class="product-price">From ₦950</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+
+      <div class="product-card reveal reveal-delay-2"><span class="product-badge">Fresh Daily</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=600&q=80" alt="Sweet Bread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Sweet Bread</div><div class="product-desc">Lightly sweet, incredibly soft. Perfect for your morning tea, butter, or straight out of the wrapper — still warm.</div><div class="product-footer"><span class="product-price">From ₦900</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+
+      <div class="product-card reveal reveal-delay-3"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80" alt="Mini Rolls" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Mini Rolls</div><div class="product-desc">Small in size, big on freshness. Great for sharing, snacking, or pairing with your favourite soup or stew.</div><div class="product-footer"><span class="product-price">From ₦300</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+
+      <div class="product-card reveal"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1585478259715-1c195ae2b568?auto=format&fit=crop&w=600&q=80" alt="Sourdough" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Sourdough Loaf</div><div class="product-desc">Naturally leavened with a tangy depth and chewy interior. A favourite for those who love real artisan bread.</div><div class="product-footer"><span class="product-price">From ₦1,200</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+
+      <div class="product-card reveal reveal-delay-1"><span class="product-badge">Crowd Pleaser</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?auto=format&fit=crop&w=600&q=80" alt="Baguette" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">French Baguette</div><div class="product-desc">Crispy crust, airy inside. Baked fresh every day. Perfect for spreads, sandwiches, or eating plain.</div><div class="product-footer"><span class="product-price">From ₦700</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+
+      <div class="product-card reveal reveal-delay-2"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=600&q=80" alt="Coconut Bread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Coconut Bread</div><div class="product-desc">Fragrant with coconut and subtly sweet. A tropical soft bread that's uniquely satisfying at every bite.</div><div class="product-footer"><span class="product-price">From ₦1,000</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+
+      <div class="product-card reveal reveal-delay-3"><span class="product-badge">PH Special</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1574239206242-37a5fba2dd98?auto=format&fit=crop&w=600&q=80" alt="Agege Style Bread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Agege-Style Bread</div><div class="product-desc">Pillowy-soft, stretchy, and buttery. Inspired by the iconic Nigerian Agege loaf — a Port Harcourt staple.</div><div class="product-footer"><span class="product-price">From ₦850</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+
+      <div class="product-card reveal"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1600718374662-0483d2b9da44?auto=format&fit=crop&w=600&q=80" alt="Rye Bread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Dark Rye Bread</div><div class="product-desc">Dense, earthy, and deeply flavourful. Packed with fibre and great with butter, cheese, or smoked fish.</div><div class="product-footer"><span class="product-price">From ₦1,100</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+
+      <div class="product-card reveal reveal-delay-1"><span class="product-badge">Morning Treat</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80" alt="Cinnamon Swirl" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Cinnamon Swirl</div><div class="product-desc">Warm cinnamon spiralled through pillowy dough. A morning indulgence that sells out fast — come early.</div><div class="product-footer"><span class="product-price">From ₦600</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+
+      <div class="product-card reveal reveal-delay-2"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1612965607446-25e1ef857941?auto=format&fit=crop&w=600&q=80" alt="Milk Bread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Milk Bread</div><div class="product-desc">Enriched with milk for a cloud-like softness. Tear-and-share style, beloved by kids and adults alike.</div><div class="product-footer"><span class="product-price">From ₦900</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+
+      <div class="product-card reveal reveal-delay-3"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1569096651702-4b11bb05e7e5?auto=format&fit=crop&w=600&q=80" alt="Multigrain" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Multigrain Loaf</div><div class="product-desc">Seeds, grains, and wholesome goodness in every slice. High in nutrition, high in flavour — a full-bodied loaf.</div><div class="product-footer"><span class="product-price">From ₦1,050</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+
+      <div class="product-card reveal"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=80" alt="Garlic Herb Bread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Garlic Herb Bread</div><div class="product-desc">Oven-baked with garlic butter and mixed herbs. Irresistible aroma, crispy edges, soft centre — a crowd pleaser.</div><div class="product-footer"><span class="product-price">From ₦800</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+
+      <div class="product-card reveal reveal-delay-1"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1566843972142-a7fcb70de55a?auto=format&fit=crop&w=600&q=80" alt="Breadsticks" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Breadsticks</div><div class="product-desc">Crispy, golden-baked sticks with a light seasoning. Perfect for dipping, snacking, or serving at events.</div><div class="product-footer"><span class="product-price">From ₦400</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+
+      <div class="product-card reveal reveal-delay-2"><span class="product-badge">Bulk Available</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=80" alt="Flatbread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Soft Flatbread</div><div class="product-desc">Thin, flexible and freshly made. Goes with everything — soups, stews, eggs, or as a wrap base.</div><div class="product-footer"><span class="product-price">From ₦350</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+
+    </div>
+  </section>
+
+  <section style="background:var(--cream-dark)"><div class="bulk-inner">
+    <span class="section-label reveal">For Businesses &amp; Events</span>
+    <h2 class="section-title reveal reveal-delay-1">Need <em>Bulk Bread</em> Supplies?</h2>
+    <p class="section-body reveal reveal-delay-2" style="margin:0 auto">We supply fresh bread in bulk for offices, schools, restaurants, churches, events and more. Same 100% quality — call us to discuss your order.</p>
+    <div class="bulk-actions reveal reveal-delay-3">
+      <a href="https://wa.me/2349033519927?text=Hi%20Bread%20Mall%2C%20I%20need%20a%20bulk%20bread%20order" class="btn-primary" target="_blank">💬 WhatsApp for Bulk Order</a>
+      <a href="tel:+2349033519927" class="btn-outline-dark">📞 Call +234 903 351 9927</a>
+    </div>
+  </div></section>
+
+  <footer><div class="footer-grid">
+    <div><span class="footer-logo" data-page="home">Bread<span>Mall</span></span><p class="footer-desc">Port Harcourt's first see-through bakery. 100% Quality Oven Fresh Bread, sold All Day.</p><div class="footer-social"><a href="https://www.instagram.com/officialbreadmallbakery" class="social-btn" target="_blank">📸</a><a href="https://www.facebook.com/p/officialbreadmallbakery-100063736293703/" class="social-btn" target="_blank">👍</a><a href="https://wa.me/2349033519927" class="social-btn" target="_blank">💬</a><a href="mailto:breadmall19@gmail.com" class="social-btn">✉️</a></div></div>
+    <div><div class="footer-col-title">Pages</div><ul class="footer-links"><li><a data-page="home">Home</a></li><li><a data-page="about">About Us</a></li><li><a data-page="menu">Our Menu</a></li><li><a data-page="contact">Find Us</a></li></ul></div>
+    <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="tel:+2349033519927">+234 903 351 9927</a></li><li><a href="mailto:breadmall19@gmail.com">breadmall19@gmail.com</a></li><li><a>No 2 Ezimgbu (Mummy-B), Link Road</a></li><li><a>Port Harcourt, Rivers State</a></li></ul></div>
+  </div><div class="footer-bottom"><p class="footer-copy">© 2026 <span>Bread Mall Bakery</span>. All rights reserved.</p><p class="footer-by">by <a href="https://victorvandi.com/" target="_blank">victorvandi.com</a></p></div></footer>
+</div>
+
+<!-- ══════════ CONTACT ══════════ -->
+<div class="page" id="page-contact">
+  <div class="page-hero"><p class="page-hero-label">Location &amp; Contact</p><h1 class="page-hero-title">Come <em>Visit</em> the Bakery</h1><p class="page-hero-sub">No 2 Ezimgbu (Mummy-B) Link Road, off Stadium Road, Port Harcourt. Open 7 days a week.</p><div class="breadcrumb"><a data-page="home">Home</a> › <span>Find Us</span></div></div>
+
+  <section style="background:var(--white)">
+    <div style="max-width:1200px;margin:0 auto 3rem"><span class="section-label reveal">Where to Find Us</span><h2 class="section-title reveal reveal-delay-1">Our <em>Location</em> &amp; Hours</h2></div>
+    <div class="location-grid">
+      <div class="map-frame reveal from-left"><iframe src="https://maps.google.com/maps?q=No+2+Ezimgbu+Link+Road+off+Stadium+Road+Port+Harcourt+Nigeria&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Bread Mall Location"></iframe></div>
+      <div>
+        <div class="contact-cards">
+          <a href="https://www.google.com/maps?q=No+2+Ezimgbu+Link+Road+Port+Harcourt" class="contact-card reveal" target="_blank"><div class="contact-icon">📍</div><div><div class="contact-label">Address</div><div class="contact-value">No 2 Ezimgbu (Mummy-B) Link Road<br>off Stadium Road, Port Harcourt</div></div></a>
+          <a href="tel:+2349033519927" class="contact-card reveal reveal-delay-1"><div class="contact-icon">📞</div><div><div class="contact-label">Call Us</div><div class="contact-value">+234 903 351 9927</div></div></a>
+          <a href="https://wa.me/2349033519927" class="contact-card reveal reveal-delay-2" target="_blank"><div class="contact-icon">💬</div><div><div class="contact-label">WhatsApp</div><div class="contact-value">Chat to place or inquire about orders</div></div></a>
+          <a href="mailto:breadmall19@gmail.com" class="contact-card reveal reveal-delay-3"><div class="contact-icon">✉️</div><div><div class="contact-label">Email</div><div class="contact-value">breadmall19@gmail.com</div></div></a>
+          <a href="https://www.instagram.com/officialbreadmallbakery" class="contact-card reveal reveal-delay-4" target="_blank"><div class="contact-icon">📸</div><div><div class="contact-label">Instagram</div><div class="contact-value">@officialbreadmallbakery</div></div></a>
+        </div>
+        <div class="hours-block reveal">
+          <div class="hours-title">🕐 Opening Hours</div>
+          <div class="hours-row"><span class="hours-day">Monday – Saturday</span><span class="hours-time">8:00 AM – 9:00 PM</span></div>
+          <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time">11:00 AM – 9:00 PM</span></div>
+          <p class="hours-note">Bread baked fresh throughout all opening hours. Come early or late — we are always baking.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="order-cta-section">
+    <div class="order-ring"></div><div class="order-ring"></div><div class="order-ring"></div>
+    <span class="section-label">Place Your Order</span>
+    <h2 class="section-title">Ready for <em>Fresh Bread?</em></h2>
+    <p class="section-body">Walk in and taste the difference. Or reach us on WhatsApp — we are always ready.</p>
+    <div class="order-actions">
+      <a href="https://wa.me/2349033519927?text=Hi%20Bread%20Mall%2C%20I%27d%20like%20to%20place%20an%20order" class="btn-dark" target="_blank">💬 WhatsApp Us</a>
+      <a href="tel:+2349033519927" class="btn-dark">📞 Call Now</a>
+      <a href="https://www.google.com/maps?q=No+2+Ezimgbu+Link+Road+Port+Harcourt" class="btn-dark" target="_blank">📍 Get Directions</a>
+    </div>
+  </section>
+
+  <footer><div class="footer-grid">
+    <div><span class="footer-logo" data-page="home">Bread<span>Mall</span></span><p class="footer-desc">Port Harcourt's first see-through bakery. 100% Quality Oven Fresh Bread, sold All Day.</p><div class="footer-social"><a href="https://www.instagram.com/officialbreadmallbakery" class="social-btn" target="_blank">📸</a><a href="https://www.facebook.com/p/officialbreadmallbakery-100063736293703/" class="social-btn" target="_blank">👍</a><a href="https://wa.me/2349033519927" class="social-btn" target="_blank">💬</a><a href="mailto:breadmall19@gmail.com" class="social-btn">✉️</a></div></div>
+    <div><div class="footer-col-title">Pages</div><ul class="footer-links"><li><a data-page="home">Home</a></li><li><a data-page="about">About Us</a></li><li><a data-page="menu">Our Menu</a></li><li><a data-page="contact">Find Us</a></li></ul></div>
+    <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="tel:+2349033519927">+234 903 351 9927</a></li><li><a href="mailto:breadmall19@gmail.com">breadmall19@gmail.com</a></li><li><a>No 2 Ezimgbu (Mummy-B), Link Road</a></li><li><a>Port Harcourt, Rivers State</a></li></ul></div>
+  </div><div class="footer-bottom"><p class="footer-copy">© 2026 <span>Bread Mall Bakery</span>. All rights reserved.</p><p class="footer-by">by <a href="https://victorvandi.com/" target="_blank">victorvandi.com</a></p></div></footer>
+</div>
 
 <script>
-// HAMBURGER
-document.getElementById('hamburger').addEventListener('click', function(){ document.getElementById('mobileMenu').classList.add('open'); });
-document.getElementById('mobileClose').addEventListener('click', function(){ document.getElementById('mobileMenu').classList.remove('open'); });
+// LOADER
+var loaderDone=false;
+function dismissLoader(){ if(loaderDone)return; loaderDone=true; var l=document.getElementById('loader'); if(l)l.classList.add('done'); }
+setTimeout(dismissLoader,2200); setTimeout(dismissLoader,4500);
+window.addEventListener('load',function(){ setTimeout(dismissLoader,500); });
+
+// ROUTER
+var currentPage='home';
+function showPage(name){
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  var target=document.getElementById('page-'+name);
+  if(!target) return;
+  target.classList.add('active');
+  currentPage=name;
+  window.scrollTo({top:0,behavior:'instant'});
+  var nav=document.getElementById('navbar');
+  nav.classList.remove('scrolled');
+  name==='home' ? nav.classList.remove('solid') : nav.classList.add('solid');
+  document.querySelectorAll('[data-page]').forEach(function(el){
+    if(el.classList.contains('nav-cta')||el.classList.contains('m-cta')||el.tagName==='BUTTON') return;
+    el.classList.toggle('active', el.dataset.page===name);
+  });
+  setTimeout(function(){
+    target.querySelectorAll('.reveal').forEach(function(el){ el.classList.remove('visible'); });
+    initReveal(target);
+    initCounters(target);
+    if(name==='home'){ initHeroChars(); initFloatRating(); }
+    // stagger product cards
+    target.querySelectorAll('.product-card').forEach(function(c,i){ c.style.animationDelay=(i*.06)+'s'; });
+  },60);
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+document.addEventListener('click',function(e){
+  var el=e.target.closest('[data-page]');
+  if(el && el.dataset.page){ e.preventDefault(); showPage(el.dataset.page); }
+});
+
+window.addEventListener('scroll',function(){
+  if(currentPage==='home') document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60);
+},{passive:true});
+
+var hb=document.getElementById('hamburger'), mm=document.getElementById('mobileMenu');
+hb.addEventListener('click',function(){ hb.classList.toggle('open'); mm.classList.toggle('open'); });
+
+// PARTICLES
+var canvas=document.getElementById('particles-canvas'), ctx=canvas.getContext('2d'), W, H;
+function resizeCanvas(){ W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; }
+resizeCanvas(); window.addEventListener('resize',resizeCanvas,{passive:true});
+function Particle(){ this.reset=function(){ this.x=Math.random()*W; this.y=H+10; this.r=Math.random()*2.2+.4; this.vx=(Math.random()-.5)*.4; this.vy=-Math.random()*.5-.12; this.life=1; this.decay=Math.random()*.0025+.0008; this.hue=Math.random()*35+15; }; this.reset(); this.y=Math.random()*H; }
+var pts=[]; for(var i=0;i<100;i++) pts.push(new Particle());
+(function af(){ ctx.clearRect(0,0,W,H); pts.forEach(function(p){ p.x+=p.vx; p.y+=p.vy; p.life-=p.decay; if(p.life<=0) p.reset(); ctx.save(); ctx.globalAlpha=p.life*.5; ctx.fillStyle='hsl('+p.hue+',80%,65%)'; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); ctx.restore(); }); requestAnimationFrame(af); })();
+
+window.addEventListener('scroll',function(){
+  if(currentPage!=='home')return;
+  var s=window.scrollY;
+  var o1=document.querySelector('.orb1'),o2=document.querySelector('.orb2');
+  if(o1)o1.style.transform='translateY('+s*.2+'px)';
+  if(o2)o2.style.transform='translateY('+(-s*.12)+'px)';
+},{passive:true});
+
+// HERO CHARS
+function animChars(el,d){ if(!el)return; var t=el.innerText; el.innerHTML=''; t.split('').forEach(function(c,i){ var s=document.createElement('span'); s.className='char'; s.style.animationDelay=(d+i*.05)+'s'; s.textContent=c===' '?'\u00A0':c; el.appendChild(s); }); }
+function initHeroChars(){ setTimeout(function(){ animChars(document.getElementById('hero-em'),.5); animChars(document.getElementById('hero-last'),1); },120); }
+
+// FLOAT RATING
+function initFloatRating(){ var el=document.getElementById('float-rating'); if(!el)return; el.textContent='0'; var target=4.8,st=null; function step(ts){ if(!st)st=ts; var p=Math.min((ts-st)/2000,1),e=1-Math.pow(1-p,3); el.textContent=(target*e).toFixed(1); if(p<1)requestAnimationFrame(step); } setTimeout(function(){ requestAnimationFrame(step); },2500); }
+
 // REVEAL
-var ro = new IntersectionObserver(function(entries){
-  entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); } });
-},{threshold:.1});
-document.querySelectorAll('.reveal').forEach(function(el){ ro.observe(el); });
+function initReveal(root){
+  var ro=new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); } }); },{threshold:.08});
+  root.querySelectorAll('.reveal').forEach(function(el){ ro.observe(el); });
+}
+
+// COUNTERS
+function initCounters(root){
+  var co=new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(!e.isIntersecting||!e.target.dataset.target)return; var el=e.target,target=parseFloat(el.dataset.target),suffix=el.dataset.suffix||'',prefix=el.dataset.prefix||'',dec=parseInt(el.dataset.decimal)||0,st=null; function step(ts){ if(!st)st=ts; var p=Math.min((ts-st)/1800,1),ease=1-Math.pow(1-p,3); el.textContent=prefix+(target*ease).toFixed(dec)+suffix; if(p<1)requestAnimationFrame(step); } requestAnimationFrame(step); co.unobserve(el); }); },{threshold:.3});
+  root.querySelectorAll('.counter-num[data-target]').forEach(function(el){ co.observe(el); });
+}
+
+// TILT on product cards
+document.addEventListener('mousemove',function(e){
+  var card=e.target.closest('.product-card'); if(!card)return;
+  var r=card.getBoundingClientRect(),dx=(e.clientX-r.left-r.width/2)/(r.width/2),dy=(e.clientY-r.top-r.height/2)/(r.height/2);
+  card.style.transform='perspective(800px) rotateY('+(dx*6)+'deg) rotateX('+(-dy*6)+'deg) translateY(-8px) scale(1.01)';
+  card.style.transition='transform .1s';
+});
+document.addEventListener('mouseleave',function(e){ var card=e.target.closest('.product-card'); if(card){ card.style.transform=''; card.style.transition='transform .5s ease'; } },true);
+
+// MAGNETIC BUTTONS
+document.addEventListener('mousemove',function(e){ var btn=e.target.closest('.btn-primary,.btn-dark,.btn-outline'); if(!btn)return; var r=btn.getBoundingClientRect(); btn.style.transform='translate('+(e.clientX-(r.left+r.width/2))*.15+'px,'+(e.clientY-(r.top+r.height/2))*.15+'px) translateY(-3px)'; });
+document.addEventListener('mouseleave',function(e){ var btn=e.target.closest('.btn-primary,.btn-dark,.btn-outline'); if(btn)btn.style.transform=''; },true);
+
+// INIT HOME
+var homeEl=document.getElementById('page-home');
+initReveal(homeEl); initCounters(homeEl); initHeroChars(); initFloatRating();
+document.querySelectorAll('#page-home .product-card').forEach(function(c,i){ c.style.animationDelay=(i*.06)+'s'; });
 </script>
 </body>
 </html>
