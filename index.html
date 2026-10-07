@@ -22,6 +22,12 @@
 "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"08:00","closes":"21:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"11:00","closes":"21:00"}],
 "sameAs":["https://www.instagram.com/officialbreadmallbakery","https://www.facebook.com/p/officialbreadmallbakery-100063736293703/"]}
 </script>
+<script>
+// Broken-image guard: if any photo fails to load, show a branded placeholder instead of a broken box
+function bmImgFail(img){ var box=img.parentElement; if(box){ box.classList.add('img-fallback'); box.setAttribute('data-label',img.alt||''); } }
+window.addEventListener('error',function(e){ var t=e.target; if(t&&t.tagName==='IMG') bmImgFail(t); },true);
+document.addEventListener('DOMContentLoaded',function(){ document.querySelectorAll('img').forEach(function(img){ if(img.complete&&img.naturalWidth===0) bmImgFail(img); }); });
+</script>
 <noscript><style>#loader{display:none}.reveal{opacity:1!important;transform:none!important}.page{display:block!important}</style></noscript>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -310,6 +316,10 @@ footer{background:var(--brown-deep);padding:4rem 5% 2.5rem}
   .products-grid{grid-template-columns:1fr}
   .gallery-strip{grid-template-columns:repeat(2,1fr)}
 }
+.img-fallback{background:linear-gradient(135deg,var(--brown-mid),var(--amber))!important;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem}
+.img-fallback img{display:none!important}
+.img-fallback::before{content:'🍞';font-size:2.4rem;opacity:.7}
+.img-fallback::after{content:attr(data-label);font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--cream);opacity:.85}
 /* ── FIXES ── */
 a.nav-logo,a.footer-logo{text-decoration:none}
 #hero{min-height:100svh}
@@ -386,7 +396,7 @@ a.nav-logo,a.footer-logo{text-decoration:none}
     <div class="gallery-img shimmer"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80" alt="Fresh bread" loading="lazy"></div>
     <div class="gallery-img shimmer"><img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?auto=format&fit=crop&w=400&q=80" alt="Baguette" loading="lazy"></div>
     <div class="gallery-img shimmer"><img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=400&q=80" alt="Croissant" loading="lazy"></div>
-    <div class="gallery-img shimmer"><img src="https://images.unsplash.com/photo-1585478259715-1c195ae2b568?auto=format&fit=crop&w=400&q=80" alt="Sourdough" loading="lazy"></div>
+    <div class="gallery-img shimmer"><img src="https://images.unsplash.com/photo-1558465984-9a9302b5b0bc?auto=format&fit=crop&w=400&q=80" alt="Sourdough" loading="lazy"></div>
     <div class="gallery-img shimmer"><img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=400&q=80" alt="Rolls" loading="lazy"></div>
   </div>
 
@@ -516,7 +526,7 @@ a.nav-logo,a.footer-logo{text-decoration:none}
 
       <div class="product-card reveal reveal-delay-3"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80" alt="Mini Rolls" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Mini Rolls</div><div class="product-desc">Small in size, big on freshness. Great for sharing, snacking, or pairing with your favourite soup or stew.</div><div class="product-footer"><span class="product-price">From ₦300</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank" rel="noopener">Order</a></div></div></div>
 
-      <div class="product-card reveal"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1585478259715-1c195ae2b568?auto=format&fit=crop&w=600&q=80" alt="Sourdough" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Sourdough Loaf</div><div class="product-desc">Naturally leavened with a tangy depth and chewy interior. A favourite for those who love real artisan bread.</div><div class="product-footer"><span class="product-price">From ₦1,200</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank" rel="noopener">Order</a></div></div></div>
+      <div class="product-card reveal"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1558465984-9a9302b5b0bc?auto=format&fit=crop&w=600&q=80" alt="Sourdough" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Sourdough Loaf</div><div class="product-desc">Naturally leavened with a tangy depth and chewy interior. A favourite for those who love real artisan bread.</div><div class="product-footer"><span class="product-price">From ₦1,200</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank" rel="noopener">Order</a></div></div></div>
 
       <div class="product-card reveal reveal-delay-1"><span class="product-badge">Crowd Pleaser</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?auto=format&fit=crop&w=600&q=80" alt="Baguette" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">French Baguette</div><div class="product-desc">Crispy crust, airy inside. Baked fresh every day. Perfect for spreads, sandwiches, or eating plain.</div><div class="product-footer"><span class="product-price">From ₦700</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank" rel="noopener">Order</a></div></div></div>
 
