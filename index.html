@@ -4,7 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bread Mall Bakery — Freshly Baked All Day | Port Harcourt</title>
+<meta name="description" content="Bread Mall Bakery — Port Harcourt's see-through bakery. Oven-fresh bread baked all day at No 2 Ezimgbu (Mummy-B) Link Road, off Stadium Road. Order on WhatsApp: +234 903 351 9927.">
+<meta name="theme-color" content="#2C1100">
+<link rel="canonical" href="https://breadmall.victorvandi.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bread Mall Bakery">
+<meta property="og:title" content="Bread Mall Bakery — Freshly Baked All Day | Port Harcourt">
+<meta property="og:description" content="Port Harcourt's see-through bakery. Oven-fresh bread all day. Order on WhatsApp or walk in at Ezimgbu Link Road.">
+<meta property="og:url" content="https://breadmall.victorvandi.com/">
+<!-- TODO: replace with a real 1200x630 photo of the bakery hosted on this domain -->
+<meta property="og:image" content="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&h=630&q=80">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍞</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Bakery","name":"Bread Mall Bakery","url":"https://breadmall.victorvandi.com/","telephone":"+2349033519927","email":"breadmall19@gmail.com",
+"address":{"@type":"PostalAddress","streetAddress":"No 2 Ezimgbu (Mummy-B) Link Road, off Stadium Road","addressLocality":"Port Harcourt","addressRegion":"Rivers State","addressCountry":"NG"},
+"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"08:00","closes":"21:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"11:00","closes":"21:00"}],
+"sameAs":["https://www.instagram.com/officialbreadmallbakery","https://www.facebook.com/p/officialbreadmallbakery-100063736293703/"]}
+</script>
+<noscript><style>#loader{display:none}.reveal{opacity:1!important;transform:none!important}.page{display:block!important}</style></noscript>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
 <style>
 :root{--brown-deep:#2C1100;--brown-mid:#5C2D0A;--amber:#C8720A;--amber-light:#E8921A;--gold:#D4A847;--cream:#FDF6EC;--cream-dark:#F5E6C8;--white:#FFFAF4;--text-dark:#1E0E00;--text-mid:#5C3A1E}
@@ -290,6 +310,19 @@ footer{background:var(--brown-deep);padding:4rem 5% 2.5rem}
   .products-grid{grid-template-columns:1fr}
   .gallery-strip{grid-template-columns:repeat(2,1fr)}
 }
+/* ── FIXES ── */
+a.nav-logo,a.footer-logo{text-decoration:none}
+#hero{min-height:100svh}
+.footer-links a[href^="https://maps"]{cursor:pointer}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+@media(max-width:900px){.gallery-strip{grid-template-columns:repeat(5,1fr)}}
+@media(max-width:600px){.gallery-strip{grid-template-columns:repeat(2,1fr)}.gallery-strip .gallery-img:last-child{grid-column:span 2;aspect-ratio:2/1}}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  html{scroll-behavior:auto}
+  .reveal,.char{opacity:1!important;transform:none!important}
+  #particles-canvas{display:none}
+}
 </style>
 </head>
 <body>
@@ -297,23 +330,23 @@ footer{background:var(--brown-deep);padding:4rem 5% 2.5rem}
 <div id="loader"><div class="loader-logo">Bread<span>Mall</span></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div><div class="loader-text">Loading freshness...</div></div>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a data-page="home" class="active">Home</a>
-  <a data-page="about">About</a>
-  <a data-page="menu">Our Menu</a>
-  <a data-page="contact">Find Us</a>
-  <a data-page="contact" class="m-cta">Order Now</a>
+  <a href="#home" data-page="home" class="active">Home</a>
+  <a href="#about" data-page="about">About</a>
+  <a href="#menu" data-page="menu">Our Menu</a>
+  <a href="#contact" data-page="contact">Find Us</a>
+  <a href="#contact" data-page="contact" class="m-cta">Order Now</a>
 </div>
 
 <nav id="navbar">
-  <span class="nav-logo" data-page="home">Bread<span>Mall</span></span>
+  <a href="#home" class="nav-logo" data-page="home" aria-label="Bread Mall — home">Bread<span>Mall</span></a>
   <ul class="nav-links">
-    <li><a data-page="home" class="active">Home</a></li>
-    <li><a data-page="about">About</a></li>
-    <li><a data-page="menu">Our Menu</a></li>
-    <li><a data-page="contact">Find Us</a></li>
-    <li><a data-page="contact" class="nav-cta">Order Now</a></li>
+    <li><a href="#home" data-page="home" class="active">Home</a></li>
+    <li><a href="#about" data-page="about">About</a></li>
+    <li><a href="#menu" data-page="menu">Our Menu</a></li>
+    <li><a href="#contact" data-page="contact">Find Us</a></li>
+    <li><a href="#contact" data-page="contact" class="nav-cta">Order Now</a></li>
   </ul>
-  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- ══════════ HOME ══════════ -->
@@ -371,7 +404,7 @@ footer{background:var(--brown-deep);padding:4rem 5% 2.5rem}
       <p class="section-body reveal reveal-delay-2">Bread Mall is Port Harcourt's first see-through bakery — walk in, see your bread being made right in front of you, and leave with something warm, fresh, and truly different. 100% Quality Oven Fresh Bread sold All Day.</p>
       <div class="feat-grid">
         <div class="feat reveal reveal-delay-1"><div class="feat-icon">👁️</div><div><div class="feat-title">See-Through Kitchen</div><div class="feat-desc">Watch your bread baked live — full transparency.</div></div></div>
-        <div class="feat reveal reveal-delay-2"><div class="feat-icon">🔥</div><div><div class="feat-title">Oven Fresh All Day</div><div class="feat-desc">Baking from 8am to 9pm, every day.</div></div></div>
+        <div class="feat reveal reveal-delay-2"><div class="feat-icon">🔥</div><div><div class="feat-title">Oven Fresh All Day</div><div class="feat-desc">Baking all day: 8am–9pm Mon–Sat, 11am–9pm Sun.</div></div></div>
         <div class="feat reveal reveal-delay-3"><div class="feat-icon">💯</div><div><div class="feat-title">100% Quality</div><div class="feat-desc">No shortcuts, no compromise. Every bake.</div></div></div>
         <div class="feat reveal reveal-delay-4"><div class="feat-icon">🌿</div><div><div class="feat-title">Serene Environment</div><div class="feat-desc">Exquisite place with a great view.</div></div></div>
       </div>
@@ -382,7 +415,7 @@ footer{background:var(--brown-deep);padding:4rem 5% 2.5rem}
   <div class="counter-section"><div class="counters-grid">
     <div class="reveal"><span class="counter-num" data-target="100" data-suffix="%">0%</span><span class="counter-label">Fresh Daily</span></div>
     <div class="reveal reveal-delay-1"><span class="counter-num" data-target="4.8" data-decimal="1" data-suffix="★">0★</span><span class="counter-label">Star Rating</span></div>
-    <div class="reveal reveal-delay-2"><span class="counter-num" data-target="1" data-prefix="#">#0</span><span class="counter-label">See-Through Bakery in PH</span></div>
+    <div class="reveal reveal-delay-2"><span class="counter-num">#1</span><span class="counter-label">See-Through Bakery in PH</span></div>
     <div class="reveal reveal-delay-3"><span class="counter-num" data-target="13" data-suffix="hrs">0hrs</span><span class="counter-label">Daily Baking Hours</span></div>
   </div></div>
 
@@ -392,10 +425,10 @@ footer{background:var(--brown-deep);padding:4rem 5% 2.5rem}
       <button class="btn-primary reveal" data-page="menu" style="white-space:nowrap;align-self:flex-end">View Full Menu →</button>
     </div>
     <div class="products-grid">
-      <div class="product-card reveal"><span class="product-badge">Customer Fav</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Classic White Loaf" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Classic White Loaf</div><div class="product-desc">Soft, fluffy, golden crust. Sold fresh all day. The bread Port Harcourt keeps coming back for.</div><div class="product-footer"><span class="product-price">From ₦800</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
-      <div class="product-card reveal reveal-delay-1"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?auto=format&fit=crop&w=600&q=80" alt="Whole Wheat Loaf" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Whole Wheat Loaf</div><div class="product-desc">Hearty and wholesome. Baked with quality wheat, sold oven-hot. A healthier choice that still delights.</div><div class="product-footer"><span class="product-price">From ₦950</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
-      <div class="product-card reveal reveal-delay-2"><span class="product-badge">Fresh Daily</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=600&q=80" alt="Sweet Bread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Sweet Bread</div><div class="product-desc">Lightly sweet, incredibly soft. Perfect for morning tea or straight out of the wrapper, still warm.</div><div class="product-footer"><span class="product-price">From ₦900</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
-      <div class="product-card reveal reveal-delay-3"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80" alt="Mini Rolls" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Mini Rolls</div><div class="product-desc">Great for sharing, snacking, or pairing with your favourite stew.</div><div class="product-footer"><span class="product-price">From ₦300</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+      <div class="product-card reveal"><span class="product-badge">Customer Fav</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Classic White Loaf" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Classic White Loaf</div><div class="product-desc">Soft, fluffy, golden crust. Sold fresh all day. The bread Port Harcourt keeps coming back for.</div><div class="product-footer"><span class="product-price">From ₦800</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank" rel="noopener">Order</a></div></div></div>
+      <div class="product-card reveal reveal-delay-1"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?auto=format&fit=crop&w=600&q=80" alt="Whole Wheat Loaf" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Whole Wheat Loaf</div><div class="product-desc">Hearty and wholesome. Baked with quality wheat, sold oven-hot. A healthier choice that still delights.</div><div class="product-footer"><span class="product-price">From ₦950</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank" rel="noopener">Order</a></div></div></div>
+      <div class="product-card reveal reveal-delay-2"><span class="product-badge">Fresh Daily</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=600&q=80" alt="Sweet Bread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Sweet Bread</div><div class="product-desc">Lightly sweet, incredibly soft. Perfect for morning tea or straight out of the wrapper, still warm.</div><div class="product-footer"><span class="product-price">From ₦900</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank" rel="noopener">Order</a></div></div></div>
+      <div class="product-card reveal reveal-delay-3"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80" alt="Mini Rolls" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Mini Rolls</div><div class="product-desc">Great for sharing, snacking, or pairing with your favourite stew.</div><div class="product-footer"><span class="product-price">From ₦300</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank" rel="noopener">Order</a></div></div></div>
     </div>
     <div class="view-all-wrap reveal"><button class="btn-outline" data-page="menu" style="color:var(--cream);border-color:rgba(253,246,236,.3)">See All 15 Products &amp; Bulk Orders →</button></div>
   </section>
@@ -406,22 +439,17 @@ footer{background:var(--brown-deep);padding:4rem 5% 2.5rem}
     <h2 class="section-title">100% Quality <em>Oven Fresh</em> Bread. All Day.</h2>
     <p class="section-body">Walk in and taste the difference. Or call and WhatsApp us — we are always ready.</p>
     <div class="order-actions">
-      <a href="https://wa.me/2349033519927?text=Hi%20Bread%20Mall%2C%20I%27d%20like%20to%20place%20an%20order" class="btn-dark" target="_blank">💬 WhatsApp Us</a>
+      <a href="https://wa.me/2349033519927?text=Hi%20Bread%20Mall%2C%20I%27d%20like%20to%20place%20an%20order" class="btn-dark" target="_blank" rel="noopener">💬 WhatsApp Us</a>
       <a href="tel:+2349033519927" class="btn-dark">📞 Call Now</a>
       <button class="btn-dark" data-page="contact">📍 Get Directions</button>
     </div>
   </section>
 
-  <footer><div class="footer-grid">
-    <div><span class="footer-logo" data-page="home">Bread<span>Mall</span></span><p class="footer-desc">Port Harcourt's first see-through bakery. 100% Quality Oven Fresh Bread, sold All Day.</p><div class="footer-social"><a href="https://www.instagram.com/officialbreadmallbakery" class="social-btn" target="_blank">📸</a><a href="https://www.facebook.com/p/officialbreadmallbakery-100063736293703/" class="social-btn" target="_blank">👍</a><a href="https://wa.me/2349033519927" class="social-btn" target="_blank">💬</a><a href="mailto:breadmall19@gmail.com" class="social-btn">✉️</a></div></div>
-    <div><div class="footer-col-title">Pages</div><ul class="footer-links"><li><a data-page="home">Home</a></li><li><a data-page="about">About Us</a></li><li><a data-page="menu">Our Menu</a></li><li><a data-page="contact">Find Us</a></li><li><a data-page="contact">Order Now</a></li></ul></div>
-    <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="tel:+2349033519927">+234 903 351 9927</a></li><li><a href="mailto:breadmall19@gmail.com">breadmall19@gmail.com</a></li><li><a>No 2 Ezimgbu (Mummy-B), Link Road</a></li><li><a>Port Harcourt, Rivers State</a></li></ul></div>
-  </div><div class="footer-bottom"><p class="footer-copy">© 2026 <span>Bread Mall Bakery</span>. All rights reserved. Port Harcourt, Rivers State.</p><p class="footer-by">by <a href="https://victorvandi.com/" target="_blank">victorvandi.com</a></p></div></footer>
 </div>
 
 <!-- ══════════ ABOUT ══════════ -->
 <div class="page" id="page-about">
-  <div class="page-hero"><p class="page-hero-label">Our Story</p><h1 class="page-hero-title">A Place to Find &amp; <em>Taste the Difference</em></h1><p class="page-hero-sub">Port Harcourt's first see-through bakery — built on the belief that fresh bread deserves to be seen being made.</p><div class="breadcrumb"><a data-page="home">Home</a> › <span>About Us</span></div></div>
+  <div class="page-hero"><p class="page-hero-label">Our Story</p><h1 class="page-hero-title">A Place to Find &amp; <em>Taste the Difference</em></h1><p class="page-hero-sub">Port Harcourt's first see-through bakery — built on the belief that fresh bread deserves to be seen being made.</p><div class="breadcrumb"><a href="#home" data-page="home">Home</a> › <span>About Us</span></div></div>
 
   <section style="background:var(--cream-dark)"><div class="about-grid">
     <div class="reveal from-left" style="position:relative">
@@ -448,7 +476,7 @@ footer{background:var(--brown-deep);padding:4rem 5% 2.5rem}
   <div class="counter-section"><div class="counters-grid">
     <div class="reveal"><span class="counter-num" data-target="100" data-suffix="%">0%</span><span class="counter-label">Fresh Daily</span></div>
     <div class="reveal reveal-delay-1"><span class="counter-num" data-target="4.8" data-decimal="1" data-suffix="★">0★</span><span class="counter-label">Star Rating</span></div>
-    <div class="reveal reveal-delay-2"><span class="counter-num" data-target="1" data-prefix="#">#0</span><span class="counter-label">See-Through Bakery in PH</span></div>
+    <div class="reveal reveal-delay-2"><span class="counter-num">#1</span><span class="counter-label">See-Through Bakery in PH</span></div>
     <div class="reveal reveal-delay-3"><span class="counter-num" data-target="13" data-suffix="hrs">0hrs</span><span class="counter-label">Daily Baking Hours</span></div>
   </div></div>
 
@@ -470,50 +498,45 @@ footer{background:var(--brown-deep);padding:4rem 5% 2.5rem}
     </div>
   </div></section>
 
-  <footer><div class="footer-grid">
-    <div><span class="footer-logo" data-page="home">Bread<span>Mall</span></span><p class="footer-desc">Port Harcourt's first see-through bakery. 100% Quality Oven Fresh Bread, sold All Day.</p><div class="footer-social"><a href="https://www.instagram.com/officialbreadmallbakery" class="social-btn" target="_blank">📸</a><a href="https://www.facebook.com/p/officialbreadmallbakery-100063736293703/" class="social-btn" target="_blank">👍</a><a href="https://wa.me/2349033519927" class="social-btn" target="_blank">💬</a><a href="mailto:breadmall19@gmail.com" class="social-btn">✉️</a></div></div>
-    <div><div class="footer-col-title">Pages</div><ul class="footer-links"><li><a data-page="home">Home</a></li><li><a data-page="about">About Us</a></li><li><a data-page="menu">Our Menu</a></li><li><a data-page="contact">Find Us</a></li></ul></div>
-    <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="tel:+2349033519927">+234 903 351 9927</a></li><li><a href="mailto:breadmall19@gmail.com">breadmall19@gmail.com</a></li><li><a>No 2 Ezimgbu (Mummy-B), Link Road</a></li><li><a>Port Harcourt, Rivers State</a></li></ul></div>
-  </div><div class="footer-bottom"><p class="footer-copy">© 2026 <span>Bread Mall Bakery</span>. All rights reserved.</p><p class="footer-by">by <a href="https://victorvandi.com/" target="_blank">victorvandi.com</a></p></div></footer>
 </div>
 
 <!-- ══════════ MENU ══════════ -->
 <div class="page" id="page-menu">
-  <div class="page-hero"><p class="page-hero-label">Our Products</p><h1 class="page-hero-title">15 Freshly Baked <em>Breads</em></h1><p class="page-hero-sub">Every loaf baked fresh and sold hot — All Day, Every Day. No stale bread. Ever.</p><div class="breadcrumb"><a data-page="home">Home</a> › <span>Our Menu</span></div></div>
+  <div class="page-hero"><p class="page-hero-label">Our Products</p><h1 class="page-hero-title">15 Freshly Baked <em>Breads</em></h1><p class="page-hero-sub">Every loaf baked fresh and sold hot — All Day, Every Day. No stale bread. Ever.</p><div class="breadcrumb"><a href="#home" data-page="home">Home</a> › <span>Our Menu</span></div></div>
 
   <section style="background:var(--brown-deep)">
     <div class="products-header"><div><span class="section-label reveal">What We Sell</span><h2 class="section-title reveal reveal-delay-1" style="color:var(--cream)">Baked Fresh. <em>Sold Hot.</em></h2><p class="section-body reveal reveal-delay-2" style="color:rgba(253,246,236,.65)">We bake all day, every day. Everything sold fresh — straight from the oven to your hands.</p></div></div>
     <div class="products-grid">
 
-      <div class="product-card reveal"><span class="product-badge">Customer Fav</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Classic White Loaf" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Classic White Loaf</div><div class="product-desc">Our signature — soft, fluffy, golden crust. Sold fresh all day. The bread Port Harcourt keeps coming back for, sliced or whole.</div><div class="product-footer"><span class="product-price">From ₦800</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+      <div class="product-card reveal"><span class="product-badge">Customer Fav</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Classic White Loaf" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Classic White Loaf</div><div class="product-desc">Our signature — soft, fluffy, golden crust. Sold fresh all day. The bread Port Harcourt keeps coming back for, sliced or whole.</div><div class="product-footer"><span class="product-price">From ₦800</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank" rel="noopener">Order</a></div></div></div>
 
-      <div class="product-card reveal reveal-delay-1"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?auto=format&fit=crop&w=600&q=80" alt="Whole Wheat Loaf" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Whole Wheat Loaf</div><div class="product-desc">Hearty, nutty, and wholesome. Baked with quality wheat and sold oven-hot. A healthier choice that still tastes like a treat.</div><div class="product-footer"><span class="product-price">From ₦950</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+      <div class="product-card reveal reveal-delay-1"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?auto=format&fit=crop&w=600&q=80" alt="Whole Wheat Loaf" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Whole Wheat Loaf</div><div class="product-desc">Hearty, nutty, and wholesome. Baked with quality wheat and sold oven-hot. A healthier choice that still tastes like a treat.</div><div class="product-footer"><span class="product-price">From ₦950</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank" rel="noopener">Order</a></div></div></div>
 
-      <div class="product-card reveal reveal-delay-2"><span class="product-badge">Fresh Daily</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=600&q=80" alt="Sweet Bread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Sweet Bread</div><div class="product-desc">Lightly sweet, incredibly soft. Perfect for your morning tea, butter, or straight out of the wrapper — still warm.</div><div class="product-footer"><span class="product-price">From ₦900</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+      <div class="product-card reveal reveal-delay-2"><span class="product-badge">Fresh Daily</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=600&q=80" alt="Sweet Bread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Sweet Bread</div><div class="product-desc">Lightly sweet, incredibly soft. Perfect for your morning tea, butter, or straight out of the wrapper — still warm.</div><div class="product-footer"><span class="product-price">From ₦900</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank" rel="noopener">Order</a></div></div></div>
 
-      <div class="product-card reveal reveal-delay-3"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80" alt="Mini Rolls" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Mini Rolls</div><div class="product-desc">Small in size, big on freshness. Great for sharing, snacking, or pairing with your favourite soup or stew.</div><div class="product-footer"><span class="product-price">From ₦300</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+      <div class="product-card reveal reveal-delay-3"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80" alt="Mini Rolls" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Mini Rolls</div><div class="product-desc">Small in size, big on freshness. Great for sharing, snacking, or pairing with your favourite soup or stew.</div><div class="product-footer"><span class="product-price">From ₦300</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank" rel="noopener">Order</a></div></div></div>
 
-      <div class="product-card reveal"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1585478259715-1c195ae2b568?auto=format&fit=crop&w=600&q=80" alt="Sourdough" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Sourdough Loaf</div><div class="product-desc">Naturally leavened with a tangy depth and chewy interior. A favourite for those who love real artisan bread.</div><div class="product-footer"><span class="product-price">From ₦1,200</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+      <div class="product-card reveal"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1585478259715-1c195ae2b568?auto=format&fit=crop&w=600&q=80" alt="Sourdough" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Sourdough Loaf</div><div class="product-desc">Naturally leavened with a tangy depth and chewy interior. A favourite for those who love real artisan bread.</div><div class="product-footer"><span class="product-price">From ₦1,200</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank" rel="noopener">Order</a></div></div></div>
 
-      <div class="product-card reveal reveal-delay-1"><span class="product-badge">Crowd Pleaser</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?auto=format&fit=crop&w=600&q=80" alt="Baguette" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">French Baguette</div><div class="product-desc">Crispy crust, airy inside. Baked fresh every day. Perfect for spreads, sandwiches, or eating plain.</div><div class="product-footer"><span class="product-price">From ₦700</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+      <div class="product-card reveal reveal-delay-1"><span class="product-badge">Crowd Pleaser</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?auto=format&fit=crop&w=600&q=80" alt="Baguette" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">French Baguette</div><div class="product-desc">Crispy crust, airy inside. Baked fresh every day. Perfect for spreads, sandwiches, or eating plain.</div><div class="product-footer"><span class="product-price">From ₦700</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank" rel="noopener">Order</a></div></div></div>
 
-      <div class="product-card reveal reveal-delay-2"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=600&q=80" alt="Coconut Bread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Coconut Bread</div><div class="product-desc">Fragrant with coconut and subtly sweet. A tropical soft bread that's uniquely satisfying at every bite.</div><div class="product-footer"><span class="product-price">From ₦1,000</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+      <div class="product-card reveal reveal-delay-2"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=600&q=80" alt="Coconut Bread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Coconut Bread</div><div class="product-desc">Fragrant with coconut and subtly sweet. A tropical soft bread that's uniquely satisfying at every bite.</div><div class="product-footer"><span class="product-price">From ₦1,000</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank" rel="noopener">Order</a></div></div></div>
 
-      <div class="product-card reveal reveal-delay-3"><span class="product-badge">PH Special</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1574239206242-37a5fba2dd98?auto=format&fit=crop&w=600&q=80" alt="Agege Style Bread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Agege-Style Bread</div><div class="product-desc">Pillowy-soft, stretchy, and buttery. Inspired by the iconic Nigerian Agege loaf — a Port Harcourt staple.</div><div class="product-footer"><span class="product-price">From ₦850</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+      <div class="product-card reveal reveal-delay-3"><span class="product-badge">PH Special</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1574239206242-37a5fba2dd98?auto=format&fit=crop&w=600&q=80" alt="Agege Style Bread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Agege-Style Bread</div><div class="product-desc">Pillowy-soft, stretchy, and buttery. Inspired by the iconic Nigerian Agege loaf — a Port Harcourt staple.</div><div class="product-footer"><span class="product-price">From ₦850</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank" rel="noopener">Order</a></div></div></div>
 
-      <div class="product-card reveal"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1600718374662-0483d2b9da44?auto=format&fit=crop&w=600&q=80" alt="Rye Bread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Dark Rye Bread</div><div class="product-desc">Dense, earthy, and deeply flavourful. Packed with fibre and great with butter, cheese, or smoked fish.</div><div class="product-footer"><span class="product-price">From ₦1,100</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+      <div class="product-card reveal"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1600718374662-0483d2b9da44?auto=format&fit=crop&w=600&q=80" alt="Rye Bread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Dark Rye Bread</div><div class="product-desc">Dense, earthy, and deeply flavourful. Packed with fibre and great with butter, cheese, or smoked fish.</div><div class="product-footer"><span class="product-price">From ₦1,100</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank" rel="noopener">Order</a></div></div></div>
 
-      <div class="product-card reveal reveal-delay-1"><span class="product-badge">Morning Treat</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80" alt="Cinnamon Swirl" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Cinnamon Swirl</div><div class="product-desc">Warm cinnamon spiralled through pillowy dough. A morning indulgence that sells out fast — come early.</div><div class="product-footer"><span class="product-price">From ₦600</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+      <div class="product-card reveal reveal-delay-1"><span class="product-badge">Morning Treat</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80" alt="Cinnamon Swirl" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Cinnamon Swirl</div><div class="product-desc">Warm cinnamon spiralled through pillowy dough. A morning indulgence that sells out fast — come early.</div><div class="product-footer"><span class="product-price">From ₦600</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank" rel="noopener">Order</a></div></div></div>
 
-      <div class="product-card reveal reveal-delay-2"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1612965607446-25e1ef857941?auto=format&fit=crop&w=600&q=80" alt="Milk Bread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Milk Bread</div><div class="product-desc">Enriched with milk for a cloud-like softness. Tear-and-share style, beloved by kids and adults alike.</div><div class="product-footer"><span class="product-price">From ₦900</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+      <div class="product-card reveal reveal-delay-2"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1612965607446-25e1ef857941?auto=format&fit=crop&w=600&q=80" alt="Milk Bread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Milk Bread</div><div class="product-desc">Enriched with milk for a cloud-like softness. Tear-and-share style, beloved by kids and adults alike.</div><div class="product-footer"><span class="product-price">From ₦900</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank" rel="noopener">Order</a></div></div></div>
 
-      <div class="product-card reveal reveal-delay-3"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1569096651702-4b11bb05e7e5?auto=format&fit=crop&w=600&q=80" alt="Multigrain" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Multigrain Loaf</div><div class="product-desc">Seeds, grains, and wholesome goodness in every slice. High in nutrition, high in flavour — a full-bodied loaf.</div><div class="product-footer"><span class="product-price">From ₦1,050</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+      <div class="product-card reveal reveal-delay-3"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1569096651702-4b11bb05e7e5?auto=format&fit=crop&w=600&q=80" alt="Multigrain" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Multigrain Loaf</div><div class="product-desc">Seeds, grains, and wholesome goodness in every slice. High in nutrition, high in flavour — a full-bodied loaf.</div><div class="product-footer"><span class="product-price">From ₦1,050</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank" rel="noopener">Order</a></div></div></div>
 
-      <div class="product-card reveal"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=80" alt="Garlic Herb Bread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Garlic Herb Bread</div><div class="product-desc">Oven-baked with garlic butter and mixed herbs. Irresistible aroma, crispy edges, soft centre — a crowd pleaser.</div><div class="product-footer"><span class="product-price">From ₦800</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+      <div class="product-card reveal"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=80" alt="Garlic Herb Bread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Garlic Herb Bread</div><div class="product-desc">Oven-baked with garlic butter and mixed herbs. Irresistible aroma, crispy edges, soft centre — a crowd pleaser.</div><div class="product-footer"><span class="product-price">From ₦800</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank" rel="noopener">Order</a></div></div></div>
 
-      <div class="product-card reveal reveal-delay-1"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1566843972142-a7fcb70de55a?auto=format&fit=crop&w=600&q=80" alt="Breadsticks" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Breadsticks</div><div class="product-desc">Crispy, golden-baked sticks with a light seasoning. Perfect for dipping, snacking, or serving at events.</div><div class="product-footer"><span class="product-price">From ₦400</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+      <div class="product-card reveal reveal-delay-1"><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1566843972142-a7fcb70de55a?auto=format&fit=crop&w=600&q=80" alt="Breadsticks" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Breadsticks</div><div class="product-desc">Crispy, golden-baked sticks with a light seasoning. Perfect for dipping, snacking, or serving at events.</div><div class="product-footer"><span class="product-price">From ₦400</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank" rel="noopener">Order</a></div></div></div>
 
-      <div class="product-card reveal reveal-delay-2"><span class="product-badge">Bulk Available</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=80" alt="Flatbread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Soft Flatbread</div><div class="product-desc">Thin, flexible and freshly made. Goes with everything — soups, stews, eggs, or as a wrap base.</div><div class="product-footer"><span class="product-price">From ₦350</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank">Order</a></div></div></div>
+      <div class="product-card reveal reveal-delay-2"><span class="product-badge">Bulk Available</span><div class="product-img shimmer"><img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=80" alt="Flatbread" loading="lazy"><div class="product-img-overlay"></div></div><div class="product-body"><div class="product-name">Soft Flatbread</div><div class="product-desc">Thin, flexible and freshly made. Goes with everything — soups, stews, eggs, or as a wrap base.</div><div class="product-footer"><span class="product-price">From ₦350</span><a href="https://wa.me/2349033519927" class="product-order-btn" target="_blank" rel="noopener">Order</a></div></div></div>
 
     </div>
   </section>
@@ -523,21 +546,16 @@ footer{background:var(--brown-deep);padding:4rem 5% 2.5rem}
     <h2 class="section-title reveal reveal-delay-1">Need <em>Bulk Bread</em> Supplies?</h2>
     <p class="section-body reveal reveal-delay-2" style="margin:0 auto">We supply fresh bread in bulk for offices, schools, restaurants, churches, events and more. Same 100% quality — call us to discuss your order.</p>
     <div class="bulk-actions reveal reveal-delay-3">
-      <a href="https://wa.me/2349033519927?text=Hi%20Bread%20Mall%2C%20I%20need%20a%20bulk%20bread%20order" class="btn-primary" target="_blank">💬 WhatsApp for Bulk Order</a>
+      <a href="https://wa.me/2349033519927?text=Hi%20Bread%20Mall%2C%20I%20need%20a%20bulk%20bread%20order" class="btn-primary" target="_blank" rel="noopener">💬 WhatsApp for Bulk Order</a>
       <a href="tel:+2349033519927" class="btn-outline-dark">📞 Call +234 903 351 9927</a>
     </div>
   </div></section>
 
-  <footer><div class="footer-grid">
-    <div><span class="footer-logo" data-page="home">Bread<span>Mall</span></span><p class="footer-desc">Port Harcourt's first see-through bakery. 100% Quality Oven Fresh Bread, sold All Day.</p><div class="footer-social"><a href="https://www.instagram.com/officialbreadmallbakery" class="social-btn" target="_blank">📸</a><a href="https://www.facebook.com/p/officialbreadmallbakery-100063736293703/" class="social-btn" target="_blank">👍</a><a href="https://wa.me/2349033519927" class="social-btn" target="_blank">💬</a><a href="mailto:breadmall19@gmail.com" class="social-btn">✉️</a></div></div>
-    <div><div class="footer-col-title">Pages</div><ul class="footer-links"><li><a data-page="home">Home</a></li><li><a data-page="about">About Us</a></li><li><a data-page="menu">Our Menu</a></li><li><a data-page="contact">Find Us</a></li></ul></div>
-    <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="tel:+2349033519927">+234 903 351 9927</a></li><li><a href="mailto:breadmall19@gmail.com">breadmall19@gmail.com</a></li><li><a>No 2 Ezimgbu (Mummy-B), Link Road</a></li><li><a>Port Harcourt, Rivers State</a></li></ul></div>
-  </div><div class="footer-bottom"><p class="footer-copy">© 2026 <span>Bread Mall Bakery</span>. All rights reserved.</p><p class="footer-by">by <a href="https://victorvandi.com/" target="_blank">victorvandi.com</a></p></div></footer>
 </div>
 
 <!-- ══════════ CONTACT ══════════ -->
 <div class="page" id="page-contact">
-  <div class="page-hero"><p class="page-hero-label">Location &amp; Contact</p><h1 class="page-hero-title">Come <em>Visit</em> the Bakery</h1><p class="page-hero-sub">No 2 Ezimgbu (Mummy-B) Link Road, off Stadium Road, Port Harcourt. Open 7 days a week.</p><div class="breadcrumb"><a data-page="home">Home</a> › <span>Find Us</span></div></div>
+  <div class="page-hero"><p class="page-hero-label">Location &amp; Contact</p><h1 class="page-hero-title">Come <em>Visit</em> the Bakery</h1><p class="page-hero-sub">No 2 Ezimgbu (Mummy-B) Link Road, off Stadium Road, Port Harcourt. Open 7 days a week.</p><div class="breadcrumb"><a href="#home" data-page="home">Home</a> › <span>Find Us</span></div></div>
 
   <section style="background:var(--white)">
     <div style="max-width:1200px;margin:0 auto 3rem"><span class="section-label reveal">Where to Find Us</span><h2 class="section-title reveal reveal-delay-1">Our <em>Location</em> &amp; Hours</h2></div>
@@ -545,11 +563,11 @@ footer{background:var(--brown-deep);padding:4rem 5% 2.5rem}
       <div class="map-frame reveal from-left"><iframe src="https://maps.google.com/maps?q=No+2+Ezimgbu+Link+Road+off+Stadium+Road+Port+Harcourt+Nigeria&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Bread Mall Location"></iframe></div>
       <div>
         <div class="contact-cards">
-          <a href="https://www.google.com/maps?q=No+2+Ezimgbu+Link+Road+Port+Harcourt" class="contact-card reveal" target="_blank"><div class="contact-icon">📍</div><div><div class="contact-label">Address</div><div class="contact-value">No 2 Ezimgbu (Mummy-B) Link Road<br>off Stadium Road, Port Harcourt</div></div></a>
+          <a href="https://www.google.com/maps?q=No+2+Ezimgbu+Link+Road+Port+Harcourt" class="contact-card reveal" target="_blank" rel="noopener"><div class="contact-icon">📍</div><div><div class="contact-label">Address</div><div class="contact-value">No 2 Ezimgbu (Mummy-B) Link Road<br>off Stadium Road, Port Harcourt</div></div></a>
           <a href="tel:+2349033519927" class="contact-card reveal reveal-delay-1"><div class="contact-icon">📞</div><div><div class="contact-label">Call Us</div><div class="contact-value">+234 903 351 9927</div></div></a>
-          <a href="https://wa.me/2349033519927" class="contact-card reveal reveal-delay-2" target="_blank"><div class="contact-icon">💬</div><div><div class="contact-label">WhatsApp</div><div class="contact-value">Chat to place or inquire about orders</div></div></a>
+          <a href="https://wa.me/2349033519927" class="contact-card reveal reveal-delay-2" target="_blank" rel="noopener"><div class="contact-icon">💬</div><div><div class="contact-label">WhatsApp</div><div class="contact-value">Chat to place or inquire about orders</div></div></a>
           <a href="mailto:breadmall19@gmail.com" class="contact-card reveal reveal-delay-3"><div class="contact-icon">✉️</div><div><div class="contact-label">Email</div><div class="contact-value">breadmall19@gmail.com</div></div></a>
-          <a href="https://www.instagram.com/officialbreadmallbakery" class="contact-card reveal reveal-delay-4" target="_blank"><div class="contact-icon">📸</div><div><div class="contact-label">Instagram</div><div class="contact-value">@officialbreadmallbakery</div></div></a>
+          <a href="https://www.instagram.com/officialbreadmallbakery" class="contact-card reveal reveal-delay-4" target="_blank" rel="noopener"><div class="contact-icon">📸</div><div><div class="contact-label">Instagram</div><div class="contact-value">@officialbreadmallbakery</div></div></a>
         </div>
         <div class="hours-block reveal">
           <div class="hours-title">🕐 Opening Hours</div>
@@ -567,32 +585,47 @@ footer{background:var(--brown-deep);padding:4rem 5% 2.5rem}
     <h2 class="section-title">Ready for <em>Fresh Bread?</em></h2>
     <p class="section-body">Walk in and taste the difference. Or reach us on WhatsApp — we are always ready.</p>
     <div class="order-actions">
-      <a href="https://wa.me/2349033519927?text=Hi%20Bread%20Mall%2C%20I%27d%20like%20to%20place%20an%20order" class="btn-dark" target="_blank">💬 WhatsApp Us</a>
+      <a href="https://wa.me/2349033519927?text=Hi%20Bread%20Mall%2C%20I%27d%20like%20to%20place%20an%20order" class="btn-dark" target="_blank" rel="noopener">💬 WhatsApp Us</a>
       <a href="tel:+2349033519927" class="btn-dark">📞 Call Now</a>
-      <a href="https://www.google.com/maps?q=No+2+Ezimgbu+Link+Road+Port+Harcourt" class="btn-dark" target="_blank">📍 Get Directions</a>
+      <a href="https://www.google.com/maps?q=No+2+Ezimgbu+Link+Road+Port+Harcourt" class="btn-dark" target="_blank" rel="noopener">📍 Get Directions</a>
     </div>
   </section>
 
-  <footer><div class="footer-grid">
-    <div><span class="footer-logo" data-page="home">Bread<span>Mall</span></span><p class="footer-desc">Port Harcourt's first see-through bakery. 100% Quality Oven Fresh Bread, sold All Day.</p><div class="footer-social"><a href="https://www.instagram.com/officialbreadmallbakery" class="social-btn" target="_blank">📸</a><a href="https://www.facebook.com/p/officialbreadmallbakery-100063736293703/" class="social-btn" target="_blank">👍</a><a href="https://wa.me/2349033519927" class="social-btn" target="_blank">💬</a><a href="mailto:breadmall19@gmail.com" class="social-btn">✉️</a></div></div>
-    <div><div class="footer-col-title">Pages</div><ul class="footer-links"><li><a data-page="home">Home</a></li><li><a data-page="about">About Us</a></li><li><a data-page="menu">Our Menu</a></li><li><a data-page="contact">Find Us</a></li></ul></div>
-    <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="tel:+2349033519927">+234 903 351 9927</a></li><li><a href="mailto:breadmall19@gmail.com">breadmall19@gmail.com</a></li><li><a>No 2 Ezimgbu (Mummy-B), Link Road</a></li><li><a>Port Harcourt, Rivers State</a></li></ul></div>
-  </div><div class="footer-bottom"><p class="footer-copy">© 2026 <span>Bread Mall Bakery</span>. All rights reserved.</p><p class="footer-by">by <a href="https://victorvandi.com/" target="_blank">victorvandi.com</a></p></div></footer>
 </div>
 
+<footer><div class="footer-grid">
+    <div><a href="#home" class="footer-logo" data-page="home" aria-label="Bread Mall — home">Bread<span>Mall</span></a><p class="footer-desc">Port Harcourt's first see-through bakery. 100% Quality Oven Fresh Bread, sold All Day.</p><div class="footer-social"><a href="https://www.instagram.com/officialbreadmallbakery" class="social-btn" aria-label="Instagram" target="_blank" rel="noopener">📸</a><a href="https://www.facebook.com/p/officialbreadmallbakery-100063736293703/" class="social-btn" aria-label="Facebook" target="_blank" rel="noopener">👍</a><a href="https://wa.me/2349033519927" class="social-btn" aria-label="WhatsApp" target="_blank" rel="noopener">💬</a><a href="mailto:breadmall19@gmail.com" class="social-btn" aria-label="Email">✉️</a></div></div>
+    <div><div class="footer-col-title">Pages</div><ul class="footer-links"><li><a href="#home" data-page="home">Home</a></li><li><a href="#about" data-page="about">About Us</a></li><li><a href="#menu" data-page="menu">Our Menu</a></li><li><a href="#contact" data-page="contact">Find Us</a></li></ul></div>
+    <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="tel:+2349033519927">+234 903 351 9927</a></li><li><a href="mailto:breadmall19@gmail.com">breadmall19@gmail.com</a></li><li><a href="https://www.google.com/maps?q=No+2+Ezimgbu+Link+Road+Port+Harcourt" target="_blank" rel="noopener">No 2 Ezimgbu (Mummy-B), Link Road</a></li><li><a href="https://www.google.com/maps?q=No+2+Ezimgbu+Link+Road+Port+Harcourt" target="_blank" rel="noopener">Port Harcourt, Rivers State</a></li></ul></div>
+  </div><div class="footer-bottom"><p class="footer-copy">© 2026 <span>Bread Mall Bakery</span>. All rights reserved.</p><p class="footer-by">by <a href="https://victorvandi.com/" target="_blank" rel="noopener">victorvandi.com</a></p></div></footer>
+
 <script>
-// LOADER
+var PAGES=['home','about','menu','contact'];
+var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var canHover=window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+// LOADER — short, and never blocks if something is slow
 var loaderDone=false;
 function dismissLoader(){ if(loaderDone)return; loaderDone=true; var l=document.getElementById('loader'); if(l)l.classList.add('done'); }
-setTimeout(dismissLoader,2200); setTimeout(dismissLoader,4500);
-window.addEventListener('load',function(){ setTimeout(dismissLoader,500); });
+document.addEventListener('DOMContentLoaded',function(){ setTimeout(dismissLoader, reduceMotion?0:600); });
+setTimeout(dismissLoader,1500);
 
-// ROUTER
-var currentPage='home';
+// OBSERVERS — one set per page, disconnected before re-creating
+var observers={};
+function cleanupObservers(name){ (observers[name]||[]).forEach(function(o){ o.disconnect(); }); observers[name]=[]; }
+
+// ROUTER — hash based: back button, refresh, and shared links all work
+var currentPage=null;
+var hb=document.getElementById('hamburger'), mm=document.getElementById('mobileMenu');
+function closeMenu(){ hb.classList.remove('open'); mm.classList.remove('open'); hb.setAttribute('aria-expanded','false'); hb.setAttribute('aria-label','Open menu'); }
+
+function pageFromHash(){ var h=location.hash.replace('#',''); return PAGES.indexOf(h)>-1?h:'home'; }
+
 function showPage(name){
-  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
   var target=document.getElementById('page-'+name);
   if(!target) return;
+  var changed=(name!==currentPage);
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
   target.classList.add('active');
   currentPage=name;
   window.scrollTo({top:0,behavior:'instant'});
@@ -600,85 +633,120 @@ function showPage(name){
   nav.classList.remove('scrolled');
   name==='home' ? nav.classList.remove('solid') : nav.classList.add('solid');
   document.querySelectorAll('[data-page]').forEach(function(el){
-    if(el.classList.contains('nav-cta')||el.classList.contains('m-cta')||el.tagName==='BUTTON') return;
-    el.classList.toggle('active', el.dataset.page===name);
+    if(el.classList.contains('nav-cta')||el.classList.contains('m-cta')||el.tagName==='BUTTON'||el.classList.contains('nav-logo')||el.classList.contains('footer-logo')) return;
+    var on=el.dataset.page===name;
+    el.classList.toggle('active',on);
+    on ? el.setAttribute('aria-current','page') : el.removeAttribute('aria-current');
   });
+  var titles={home:'Bread Mall Bakery — Freshly Baked All Day | Port Harcourt',about:'About Us — Bread Mall Bakery | Port Harcourt',menu:'Our Menu — Bread Mall Bakery | Port Harcourt',contact:'Find Us & Order — Bread Mall Bakery | Port Harcourt'};
+  document.title=titles[name];
+  closeMenu();
+  updateParticles();
+  if(!changed) return;
   setTimeout(function(){
+    cleanupObservers(name);
     target.querySelectorAll('.reveal').forEach(function(el){ el.classList.remove('visible'); });
-    initReveal(target);
-    initCounters(target);
+    initReveal(target,name);
+    initCounters(target,name);
     if(name==='home'){ initHeroChars(); initFloatRating(); }
-    // stagger product cards
     target.querySelectorAll('.product-card').forEach(function(c,i){ c.style.animationDelay=(i*.06)+'s'; });
   },60);
-  document.getElementById('hamburger').classList.remove('open');
-  document.getElementById('mobileMenu').classList.remove('open');
 }
 
 document.addEventListener('click',function(e){
   var el=e.target.closest('[data-page]');
-  if(el && el.dataset.page){ e.preventDefault(); showPage(el.dataset.page); }
+  if(!el||!el.dataset.page) return;
+  e.preventDefault();
+  var p=el.dataset.page;
+  if(location.hash==='#'+p) showPage(p);   // same page clicked: just scroll to top / close menu
+  else location.hash=p;                    // creates a history entry -> hashchange
 });
+window.addEventListener('hashchange',function(){ showPage(pageFromHash()); });
 
 window.addEventListener('scroll',function(){
   if(currentPage==='home') document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60);
 },{passive:true});
 
-var hb=document.getElementById('hamburger'), mm=document.getElementById('mobileMenu');
-hb.addEventListener('click',function(){ hb.classList.toggle('open'); mm.classList.toggle('open'); });
+hb.addEventListener('click',function(){
+  var open=!mm.classList.contains('open');
+  hb.classList.toggle('open',open); mm.classList.toggle('open',open);
+  hb.setAttribute('aria-expanded',String(open));
+  hb.setAttribute('aria-label',open?'Close menu':'Open menu');
+});
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeMenu(); });
 
-// PARTICLES
-var canvas=document.getElementById('particles-canvas'), ctx=canvas.getContext('2d'), W, H;
+// PARTICLES — only run on Home, with the tab visible, and if motion is allowed
+var canvas=document.getElementById('particles-canvas'), ctx=canvas.getContext('2d'), W, H, rafId=null;
 function resizeCanvas(){ W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; }
 resizeCanvas(); window.addEventListener('resize',resizeCanvas,{passive:true});
 function Particle(){ this.reset=function(){ this.x=Math.random()*W; this.y=H+10; this.r=Math.random()*2.2+.4; this.vx=(Math.random()-.5)*.4; this.vy=-Math.random()*.5-.12; this.life=1; this.decay=Math.random()*.0025+.0008; this.hue=Math.random()*35+15; }; this.reset(); this.y=Math.random()*H; }
-var pts=[]; for(var i=0;i<100;i++) pts.push(new Particle());
-(function af(){ ctx.clearRect(0,0,W,H); pts.forEach(function(p){ p.x+=p.vx; p.y+=p.vy; p.life-=p.decay; if(p.life<=0) p.reset(); ctx.save(); ctx.globalAlpha=p.life*.5; ctx.fillStyle='hsl('+p.hue+',80%,65%)'; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); ctx.restore(); }); requestAnimationFrame(af); })();
+var pts=[], count=window.innerWidth<600?40:100;
+for(var i=0;i<count;i++) pts.push(new Particle());
+function frame(){
+  ctx.clearRect(0,0,W,H);
+  pts.forEach(function(p){ p.x+=p.vx; p.y+=p.vy; p.life-=p.decay; if(p.life<=0) p.reset(); ctx.globalAlpha=p.life*.5; ctx.fillStyle='hsl('+p.hue+',80%,65%)'; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); });
+  rafId=requestAnimationFrame(frame);
+}
+function updateParticles(){
+  var shouldRun=!reduceMotion && currentPage==='home' && !document.hidden;
+  if(shouldRun && rafId===null) rafId=requestAnimationFrame(frame);
+  if(!shouldRun && rafId!==null){ cancelAnimationFrame(rafId); rafId=null; }
+}
+document.addEventListener('visibilitychange',updateParticles);
 
 window.addEventListener('scroll',function(){
-  if(currentPage!=='home')return;
+  if(currentPage!=='home'||reduceMotion)return;
   var s=window.scrollY;
   var o1=document.querySelector('.orb1'),o2=document.querySelector('.orb2');
   if(o1)o1.style.transform='translateY('+s*.2+'px)';
   if(o2)o2.style.transform='translateY('+(-s*.12)+'px)';
 },{passive:true});
 
-// HERO CHARS
-function animChars(el,d){ if(!el)return; var t=el.innerText; el.innerHTML=''; t.split('').forEach(function(c,i){ var s=document.createElement('span'); s.className='char'; s.style.animationDelay=(d+i*.05)+'s'; s.textContent=c===' '?'\u00A0':c; el.appendChild(s); }); }
+// HERO CHARS — keeps the readable text for screen readers
+function animChars(el,d){
+  if(!el||reduceMotion)return;
+  var t=el.dataset.text||el.textContent; el.dataset.text=t;
+  el.setAttribute('aria-label',t); el.innerHTML='';
+  t.split('').forEach(function(c,i){ var s=document.createElement('span'); s.className='char'; s.setAttribute('aria-hidden','true'); s.style.animationDelay=(d+i*.05)+'s'; s.textContent=c===' '?'\u00A0':c; el.appendChild(s); });
+}
 function initHeroChars(){ setTimeout(function(){ animChars(document.getElementById('hero-em'),.5); animChars(document.getElementById('hero-last'),1); },120); }
 
 // FLOAT RATING
-function initFloatRating(){ var el=document.getElementById('float-rating'); if(!el)return; el.textContent='0'; var target=4.8,st=null; function step(ts){ if(!st)st=ts; var p=Math.min((ts-st)/2000,1),e=1-Math.pow(1-p,3); el.textContent=(target*e).toFixed(1); if(p<1)requestAnimationFrame(step); } setTimeout(function(){ requestAnimationFrame(step); },2500); }
+function initFloatRating(){ var el=document.getElementById('float-rating'); if(!el)return; var target=4.8; if(reduceMotion){ el.textContent=target.toFixed(1); return; } el.textContent='0'; var st=null; function step(ts){ if(!st)st=ts; var p=Math.min((ts-st)/2000,1),e=1-Math.pow(1-p,3); el.textContent=(target*e).toFixed(1); if(p<1)requestAnimationFrame(step); } setTimeout(function(){ requestAnimationFrame(step); },1200); }
 
 // REVEAL
-function initReveal(root){
+function initReveal(root,name){
+  if(reduceMotion||!('IntersectionObserver' in window)){ root.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('visible'); }); return; }
   var ro=new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); } }); },{threshold:.08});
   root.querySelectorAll('.reveal').forEach(function(el){ ro.observe(el); });
+  observers[name].push(ro);
 }
 
 // COUNTERS
-function initCounters(root){
-  var co=new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(!e.isIntersecting||!e.target.dataset.target)return; var el=e.target,target=parseFloat(el.dataset.target),suffix=el.dataset.suffix||'',prefix=el.dataset.prefix||'',dec=parseInt(el.dataset.decimal)||0,st=null; function step(ts){ if(!st)st=ts; var p=Math.min((ts-st)/1800,1),ease=1-Math.pow(1-p,3); el.textContent=prefix+(target*ease).toFixed(dec)+suffix; if(p<1)requestAnimationFrame(step); } requestAnimationFrame(step); co.unobserve(el); }); },{threshold:.3});
-  root.querySelectorAll('.counter-num[data-target]').forEach(function(el){ co.observe(el); });
+function initCounters(root,name){
+  var els=root.querySelectorAll('.counter-num[data-target]');
+  function fmt(el,v){ return (el.dataset.prefix||'')+v.toFixed(parseInt(el.dataset.decimal)||0)+(el.dataset.suffix||''); }
+  if(reduceMotion||!('IntersectionObserver' in window)){ els.forEach(function(el){ el.textContent=fmt(el,parseFloat(el.dataset.target)); }); return; }
+  var co=new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(!e.isIntersecting)return; var el=e.target,target=parseFloat(el.dataset.target),st=null; function step(ts){ if(!st)st=ts; var p=Math.min((ts-st)/1800,1),ease=1-Math.pow(1-p,3); el.textContent=fmt(el,target*ease); if(p<1)requestAnimationFrame(step); } requestAnimationFrame(step); co.unobserve(el); }); },{threshold:.3});
+  els.forEach(function(el){ co.observe(el); });
+  observers[name].push(co);
 }
 
-// TILT on product cards
-document.addEventListener('mousemove',function(e){
-  var card=e.target.closest('.product-card'); if(!card)return;
-  var r=card.getBoundingClientRect(),dx=(e.clientX-r.left-r.width/2)/(r.width/2),dy=(e.clientY-r.top-r.height/2)/(r.height/2);
-  card.style.transform='perspective(800px) rotateY('+(dx*6)+'deg) rotateX('+(-dy*6)+'deg) translateY(-8px) scale(1.01)';
-  card.style.transition='transform .1s';
-});
-document.addEventListener('mouseleave',function(e){ var card=e.target.closest('.product-card'); if(card){ card.style.transform=''; card.style.transition='transform .5s ease'; } },true);
+// TILT + MAGNETIC — mouse devices only (skipped on touch phones)
+if(canHover && !reduceMotion){
+  document.addEventListener('mousemove',function(e){
+    var card=e.target.closest('.product-card'); if(!card)return;
+    var r=card.getBoundingClientRect(),dx=(e.clientX-r.left-r.width/2)/(r.width/2),dy=(e.clientY-r.top-r.height/2)/(r.height/2);
+    card.style.transform='perspective(800px) rotateY('+(dx*6)+'deg) rotateX('+(-dy*6)+'deg) translateY(-8px) scale(1.01)';
+    card.style.transition='transform .1s';
+  });
+  document.addEventListener('mouseleave',function(e){ var card=e.target.closest&&e.target.closest('.product-card'); if(card){ card.style.transform=''; card.style.transition='transform .5s ease'; } },true);
+  document.addEventListener('mousemove',function(e){ var btn=e.target.closest('.btn-primary,.btn-dark,.btn-outline'); if(!btn)return; var r=btn.getBoundingClientRect(); btn.style.transform='translate('+(e.clientX-(r.left+r.width/2))*.15+'px,'+(e.clientY-(r.top+r.height/2))*.15+'px) translateY(-3px)'; });
+  document.addEventListener('mouseleave',function(e){ var btn=e.target.closest&&e.target.closest('.btn-primary,.btn-dark,.btn-outline'); if(btn)btn.style.transform=''; },true);
+}
 
-// MAGNETIC BUTTONS
-document.addEventListener('mousemove',function(e){ var btn=e.target.closest('.btn-primary,.btn-dark,.btn-outline'); if(!btn)return; var r=btn.getBoundingClientRect(); btn.style.transform='translate('+(e.clientX-(r.left+r.width/2))*.15+'px,'+(e.clientY-(r.top+r.height/2))*.15+'px) translateY(-3px)'; });
-document.addEventListener('mouseleave',function(e){ var btn=e.target.closest('.btn-primary,.btn-dark,.btn-outline'); if(btn)btn.style.transform=''; },true);
-
-// INIT HOME
-var homeEl=document.getElementById('page-home');
-initReveal(homeEl); initCounters(homeEl); initHeroChars(); initFloatRating();
-document.querySelectorAll('#page-home .product-card').forEach(function(c,i){ c.style.animationDelay=(i*.06)+'s'; });
+// INIT — open whichever page the URL asks for
+showPage(pageFromHash());
 </script>
 </body>
 </html>
